@@ -107,7 +107,7 @@ public class AnalizadorLexico {
 
     //Retrocede a al estado anterior
     public void anterior(){
-        try {--anterior; entrada.seek(anterior);} 
+        try {anterior--; entrada.seek(anterior);} 
         catch (IOException ex) {
             Logger.getLogger(AnalizadorLexico.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -124,12 +124,14 @@ public class AnalizadorLexico {
     //Devuelve el Token siguiente
     public Token siguienteToken(){
         int estado = 0;
+        t.lexema = "";
         char c = leer();
         do{
+            //System.out.println(c);
             estado = delta(estado, c);
             //Cuando no esun estado final y es distinto de -1
             if(no_final(estado)){
-                if(estado == 1){ t.lexema="";} else{ t.lexema+=c;}
+                if(estado == 0){ t.lexema="";} else{ t.lexema+=c;}
                 colum++;
                 c = leer();
             }
