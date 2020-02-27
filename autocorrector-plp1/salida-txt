@@ -1,0 +1,697 @@
+*********************************************************
+Autocorrector plp1 (solo analizador léxico) 
+ Generando ficheros auxiliares... 
+*********************************************************
+ Compilando...
+*********************************************************
+
+*********************************************************
+ Ejecutando y comprobando salida a la vez...
+*********************************************************
+Prueba: p01
+--- Fallo en la traducción ----------
+0a1,174
+> Token: 1,1 class  -> (1,1): class es de tipo 10
+> 
+> Token: 1,7 Main  -> (1,7): Main es de tipo 18
+> 
+> Token: 1,12 {  -> (1,12): { es de tipo 3
+> 
+> Token: 2,3 fun  -> (2,3): fun es de tipo 11
+> 
+> Token: 2,7 main  -> (2,7): main es de tipo 18
+> 
+> Token: 2,13 int  -> (2,13): int es de tipo 12
+> 
+> Token: 2,17 a  -> (2,17): a es de tipo 18
+> 
+> Token: 2,18 ;  -> (2,18): ; es de tipo 6
+> 
+> Token: 2,19 float  -> (2,19): float es de tipo 13
+> 
+> Token: 2,25 b  -> (2,25): b es de tipo 18
+> 
+> Token: 2,27 {  -> (2,27): { es de tipo 3
+> 
+> Token: 4,5 fun  -> (4,5): fun es de tipo 11
+> 
+> Token: 4,9 submain  -> (4,9): submain es de tipo 18
+> 
+> Token: 4,17 float  -> (4,17): float es de tipo 13
+> 
+> Token: 4,23 c  -> (4,23): c es de tipo 18
+> 
+> Token: 4,25 {  -> (4,25): { es de tipo 3
+> 
+> Token: 5,7 print  -> (5,7): print es de tipo 17
+> 
+> Token: 5,13 1  -> (5,13): 1 es de tipo 19
+> 
+> Token: 5,14 +  -> (5,14): + es de tipo 8
+> 
+> Token: 5,15 2  -> (5,15): 2 es de tipo 19
+> 
+> Token: 5,16 -  -> (5,16): - es de tipo 8
+> 
+> Token: 5,17 (  -> (5,17): ( es de tipo 0
+> 
+> Token: 5,18 3  -> (5,18): 3 es de tipo 19
+> 
+> Token: 5,19 *  -> (5,19): * es de tipo 9
+> 
+> Token: 5,20 4.5  -> (5,20): 4.5 es de tipo 20
+> 
+> Token: 5,23 /  -> (5,23): / es de tipo 9
+> 
+> Token: 5,24 6  -> (5,24): 6 es de tipo 19
+> 
+> Token: 5,25 )  -> (5,25): ) es de tipo 1
+> 
+> Token: 5,26 ;  -> (5,26): ; es de tipo 6
+> 
+> Token: 6,7 float  -> (6,7): float es de tipo 13
+> 
+> Token: 6,13 d  -> (6,13): d es de tipo 18
+> 
+> Token: 6,14 ;  -> (6,14): ; es de tipo 6
+> 
+> Token: 7,7 d  -> (7,7): d es de tipo 18
+> 
+> Token: 7,9 =  -> (7,9): = es de tipo 5
+> 
+> Token: 7,11 a  -> (7,11): a es de tipo 18
+> 
+> Token: 7,12 +  -> (7,12): + es de tipo 8
+> 
+> Token: 7,13 b  -> (7,13): b es de tipo 18
+> 
+> Token: 7,14 /  -> (7,14): / es de tipo 9
+> 
+> Token: 7,15 c  -> (7,15): c es de tipo 18
+> 
+> Token: 7,16 ;  -> (7,16): ; es de tipo 6
+> 
+> Token: 8,7 if  -> (8,7): if es de tipo 14
+> 
+> Token: 8,10 a  -> (8,10): a es de tipo 18
+> 
+> Token: 8,11 <  -> (8,11): < es de tipo 7
+> 
+> Token: 8,12 d  -> (8,12): d es de tipo 18
+> 
+> Token: 8,14 :  -> (8,14): : es de tipo 2
+> 
+> Token: 9,9 float  -> (9,9): float es de tipo 13
+> 
+> Token: 9,15 e  -> (9,15): e es de tipo 18
+> 
+> Token: 10,7 else  -> (10,7): else es de tipo 15
+> 
+> Token: 11,9 int  -> (11,9): int es de tipo 12
+> 
+> Token: 11,13 f  -> (11,13): f es de tipo 18
+> 
+> Token: 12,7 fi  -> (12,7): fi es de tipo 16
+> 
+> Token: 13,5 }  -> (13,5): } es de tipo 4
+> 
+> Token: 15,5 class  -> (15,5): class es de tipo 10
+> 
+> Token: 15,11 A  -> (15,11): A es de tipo 18
+> 
+> Token: 15,13 {  -> (15,13): { es de tipo 3
+> 
+> Token: 16,5 }  -> (16,5): } es de tipo 4
+> 
+> Token: 18,5 class  -> (18,5): class es de tipo 10
+> 
+> Token: 18,11 B  -> (18,11): B es de tipo 18
+> 
+> Token: 18,13 {  -> (18,13): { es de tipo 3
+> 
+> Token: 19,7 fun  -> (19,7): fun es de tipo 11
+> 
+> Token: 19,11 mainB  -> (19,11): mainB es de tipo 18
+> 
+> Token: 19,17 float  -> (19,17): float es de tipo 13
+> 
+> Token: 19,23 g  -> (19,23): g es de tipo 18
+> 
+> Token: 19,25 {  -> (19,25): { es de tipo 3
+> 
+> Token: 20,9 {  -> (20,9): { es de tipo 3
+> 
+> Token: 21,11 int  -> (21,11): int es de tipo 12
+> 
+> Token: 21,15 h  -> (21,15): h es de tipo 18
+> 
+> Token: 21,16 ;  -> (21,16): ; es de tipo 6
+> 
+> Token: 23,11 h  -> (23,11): h es de tipo 18
+> 
+> Token: 23,13 =  -> (23,13): = es de tipo 5
+> 
+> Token: 23,15 7  -> (23,15): 7 es de tipo 19
+> 
+> Token: 23,16 ;  -> (23,16): ; es de tipo 6
+> 
+> Token: 25,11 float  -> (25,11): float es de tipo 13
+> 
+> Token: 25,17 i  -> (25,17): i es de tipo 18
+> 
+> Token: 25,18 ;  -> (25,18): ; es de tipo 6
+> 
+> Token: 27,11 i  -> (27,11): i es de tipo 18
+> 
+> Token: 27,13 =  -> (27,13): = es de tipo 5
+> 
+> Token: 27,15 2.5  -> (27,15): 2.5 es de tipo 20
+> 
+> Token: 27,19 !=  -> (27,19): != es de tipo 7
+> 
+> Token: 27,22 2.4999  -> (27,22): 2.4999 es de tipo 20
+> 
+> Token: 28,9 }  -> (28,9): } es de tipo 4
+> 
+> Token: 29,7 }  -> (29,7): } es de tipo 4
+> 
+> Token: 30,5 }  -> (30,5): } es de tipo 4
+> 
+> Token: 34,5 print  -> (34,5): print es de tipo 17
+> 
+> Token: 34,11 7  -> (34,11): 7 es de tipo 19
+> 
+> Token: 35,3 }  -> (35,3): } es de tipo 4
+> 
+> Token: 36,1 }  -> (36,1): } es de tipo 4
+> 
+--------------------------
+Prueba: p02
+--- Fallo en la traducción ----------
+0a1,42
+> Token: 1,1 class  -> (1,1): class es de tipo 10
+> 
+> Token: 1,7 Main  -> (1,7): Main es de tipo 18
+> 
+> Token: 1,12 {  -> (1,12): { es de tipo 3
+> 
+> Token: 2,3 fun  -> (2,3): fun es de tipo 11
+> 
+> Token: 2,7 main  -> (2,7): main es de tipo 18
+> 
+> Token: 2,13 int  -> (2,13): int es de tipo 12
+> 
+> Token: 2,17 a  -> (2,17): a es de tipo 18
+> 
+> Token: 2,19 {  -> (2,19): { es de tipo 3
+> 
+> Token: 6,5 int  -> (6,5): int es de tipo 12
+> 
+> Token: 6,12 b  -> (6,12): b es de tipo 18
+> 
+> Token: 6,13 ;  -> (6,13): ; es de tipo 6
+> 
+> Token: 7,5 float  -> (7,5): float es de tipo 13
+> 
+> Token: 7,15 c  -> (7,15): c es de tipo 18
+> 
+> Token: 7,16 ;  -> (7,16): ; es de tipo 6
+> 
+> Token: 8,5 print  -> (8,5): print es de tipo 17
+> 
+> Token: 8,11 2  -> (8,11): 2 es de tipo 19
+> 
+> Token: 10,12 +  -> (10,12): + es de tipo 8
+> 
+> Token: 11,16 3  -> (11,16): 3 es de tipo 19
+> 
+> Token: 11,17 ;  -> (11,17): ; es de tipo 6
+> 
+> Token: 13,5 print  -> (13,5): print es de tipo 17
+> 
+> Token: 13,11 12  -> (13,11): 12 es de tipo 19
+> 
+--------------------------
+Prueba: p03
+--- Fallo en la traducción ----------
+0a1,130
+> Token: 1,1 class  -> (1,1): class es de tipo 10
+> 
+> Token: 1,7 Main  -> (1,7): Main es de tipo 18
+> 
+> Token: 1,12 {  -> (1,12): { es de tipo 3
+> 
+> Token: 2,3 fun  -> (2,3): fun es de tipo 11
+> 
+> Token: 2,7 main  -> (2,7): main es de tipo 18
+> 
+> Token: 2,13 int  -> (2,13): int es de tipo 12
+> 
+> Token: 2,17 a  -> (2,17): a es de tipo 18
+> 
+> Token: 2,19 {  -> (2,19): { es de tipo 3
+> 
+> Token: 4,5 print  -> (4,5): print es de tipo 17
+> 
+> Token: 4,11 2  -> (4,11): 2 es de tipo 19
+> 
+> Token: 4,12 <  -> (4,12): < es de tipo 7
+> 
+> Token: 4,13 3  -> (4,13): 3 es de tipo 19
+> 
+> Token: 4,14 ;  -> (4,14): ; es de tipo 6
+> 
+> Token: 5,5 print  -> (5,5): print es de tipo 17
+> 
+> Token: 5,11 2  -> (5,11): 2 es de tipo 19
+> 
+> Token: 5,12 ==  -> (5,12): == es de tipo 7
+> 
+> Token: 5,14 3  -> (5,14): 3 es de tipo 19
+> 
+> Token: 5,15 ;  -> (5,15): ; es de tipo 6
+> 
+> Token: 6,5 print  -> (6,5): print es de tipo 17
+> 
+> Token: 6,11 2  -> (6,11): 2 es de tipo 19
+> 
+> Token: 6,12 <=  -> (6,12): <= es de tipo 7
+> 
+> Token: 6,14 3  -> (6,14): 3 es de tipo 19
+> 
+> Token: 6,15 ;  -> (6,15): ; es de tipo 6
+> 
+> Token: 7,5 print  -> (7,5): print es de tipo 17
+> 
+> Token: 7,11 2  -> (7,11): 2 es de tipo 19
+> 
+> Token: 7,12 >  -> (7,12): > es de tipo 7
+> 
+> Token: 7,13 3  -> (7,13): 3 es de tipo 19
+> 
+> Token: 7,14 ;  -> (7,14): ; es de tipo 6
+> 
+> Token: 8,5 print  -> (8,5): print es de tipo 17
+> 
+> Token: 8,11 2  -> (8,11): 2 es de tipo 19
+> 
+> Token: 8,12 >=  -> (8,12): >= es de tipo 7
+> 
+> Token: 8,14 3  -> (8,14): 3 es de tipo 19
+> 
+> Token: 8,15 ;  -> (8,15): ; es de tipo 6
+> 
+> Token: 9,5 print  -> (9,5): print es de tipo 17
+> 
+> Token: 9,11 2  -> (9,11): 2 es de tipo 19
+> 
+> Token: 9,12 !=  -> (9,12): != es de tipo 7
+> 
+> Token: 9,14 3  -> (9,14): 3 es de tipo 19
+> 
+> Token: 9,15 ;  -> (9,15): ; es de tipo 6
+> 
+> Token: 10,5 float  -> (10,5): float es de tipo 13
+> 
+> Token: 10,11 printando  -> (10,11): printando es de tipo 18
+> 
+> Token: 10,20 ;  -> (10,20): ; es de tipo 6
+> 
+> Token: 12,5 printando  -> (12,5): printando es de tipo 18
+> 
+> Token: 12,14 =  -> (12,14): = es de tipo 5
+> 
+> Token: 12,15 1234  -> (12,15): 1234 es de tipo 19
+> 
+> Token: 12,19 /  -> (12,19): / es de tipo 9
+> 
+> Token: 12,20 1  -> (12,20): 1 es de tipo 19
+> 
+> Token: 12,21 *  -> (12,21): * es de tipo 9
+> 
+> Token: 12,22 1  -> (12,22): 1 es de tipo 19
+> 
+> Token: 12,23 +  -> (12,23): + es de tipo 8
+> 
+> Token: 12,24 0.1  -> (12,24): 0.1 es de tipo 20
+> 
+> Token: 12,27 -  -> (12,27): - es de tipo 8
+> 
+> Token: 12,28 123.456  -> (12,28): 123.456 es de tipo 20
+> 
+> Token: 12,35 *  -> (12,35): * es de tipo 9
+> 
+> Token: 12,36 12.34  -> (12,36): 12.34 es de tipo 20
+> 
+> Token: 12,41 ;  -> (12,41): ; es de tipo 6
+> 
+> Token: 14,5 {  -> (14,5): { es de tipo 3
+> 
+> Token: 15,7 int  -> (15,7): int es de tipo 12
+> 
+> Token: 15,11 b  -> (15,11): b es de tipo 18
+> 
+> Token: 15,12 ;  -> (15,12): ; es de tipo 6
+> 
+> Token: 17,7 b  -> (17,7): b es de tipo 18
+> 
+> Token: 17,9 ==  -> (17,9): == es de tipo 7
+> 
+> Token: 17,12 7  -> (17,12): 7 es de tipo 19
+> 
+> Token: 18,5 }  -> (18,5): } es de tipo 4
+> 
+> Token: 19,3 }  -> (19,3): } es de tipo 4
+> 
+> Token: 20,1 }  -> (20,1): } es de tipo 4
+> 
+--------------------------
+Prueba: p04
+--- Fallo en la traducción ----------
+0a1,50
+> Token: 1,1 class  -> (1,1): class es de tipo 10
+> 
+> Token: 1,7 Main  -> (1,7): Main es de tipo 18
+> 
+> Token: 1,12 {  -> (1,12): { es de tipo 3
+> 
+> Token: 2,3 fun  -> (2,3): fun es de tipo 11
+> 
+> Token: 2,7 f  -> (2,7): f es de tipo 18
+> 
+> Token: 2,9 float  -> (2,9): float es de tipo 13
+> 
+> Token: 2,15 a  -> (2,15): a es de tipo 18
+> 
+> Token: 2,16 ;  -> (2,16): ; es de tipo 6
+> 
+> Token: 2,18 int  -> (2,18): int es de tipo 12
+> 
+> Token: 2,22 b  -> (2,22): b es de tipo 18
+> 
+> Token: 2,24 {  -> (2,24): { es de tipo 3
+> 
+> Token: 3,5 print  -> (3,5): print es de tipo 17
+> 
+> Token: 3,11 a  -> (3,11): a es de tipo 18
+> 
+> Token: 3,12 +  -> (3,12): + es de tipo 8
+> 
+> Token: 3,13 b  -> (3,13): b es de tipo 18
+> 
+> Token: 4,3 }  -> (4,3): } es de tipo 4
+> 
+> Token: 5,3 fun  -> (5,3): fun es de tipo 11
+> 
+> Token: 5,7 main  -> (5,7): main es de tipo 18
+> 
+> Token: 5,13 int  -> (5,13): int es de tipo 12
+> 
+> Token: 5,17 a  -> (5,17): a es de tipo 18
+> 
+> Token: 6,5 c  -> (6,5): c es de tipo 18
+> 
+> Token: 6,7 =  -> (6,7): = es de tipo 5
+> 
+> Token: 6,9 7  -> (6,9): 7 es de tipo 19
+> 
+> Token: 8,3 }  -> (8,3): } es de tipo 4
+> 
+> Token: 9,1 }  -> (9,1): } es de tipo 4
+> 
+--------------------------
+Prueba: p05
+--- Fallo en la traducción ----------
+0a1,62
+> Token: 1,1 class  -> (1,1): class es de tipo 10
+> 
+> Token: 1,7 Main  -> (1,7): Main es de tipo 18
+> 
+> Token: 1,12 {  -> (1,12): { es de tipo 3
+> 
+> Token: 2,3 fun  -> (2,3): fun es de tipo 11
+> 
+> Token: 2,7 f  -> (2,7): f es de tipo 18
+> 
+> Token: 2,9 float  -> (2,9): float es de tipo 13
+> 
+> Token: 2,15 a  -> (2,15): a es de tipo 18
+> 
+> Token: 2,16 ;  -> (2,16): ; es de tipo 6
+> 
+> Token: 2,18 int  -> (2,18): int es de tipo 12
+> 
+> Token: 2,22 b  -> (2,22): b es de tipo 18
+> 
+> Token: 2,24 {  -> (2,24): { es de tipo 3
+> 
+> Token: 3,5 print  -> (3,5): print es de tipo 17
+> 
+> Token: 3,11 a  -> (3,11): a es de tipo 18
+> 
+> Token: 3,12 +  -> (3,12): + es de tipo 8
+> 
+> Token: 3,13 b  -> (3,13): b es de tipo 18
+> 
+> Token: 4,3 }  -> (4,3): } es de tipo 4
+> 
+> Token: 5,3 fun  -> (5,3): fun es de tipo 11
+> 
+> Token: 5,7 main  -> (5,7): main es de tipo 18
+> 
+> Token: 5,13 int  -> (5,13): int es de tipo 12
+> 
+> Token: 5,17 a  -> (5,17): a es de tipo 18
+> 
+> Token: 5,19 {  -> (5,19): { es de tipo 3
+> 
+> Token: 6,5 float  -> (6,5): float es de tipo 13
+> 
+> Token: 6,11 c  -> (6,11): c es de tipo 18
+> 
+> Token: 6,12 ;  -> (6,12): ; es de tipo 6
+> 
+> Token: 8,5 print  -> (8,5): print es de tipo 17
+> 
+> Token: 8,11 2  -> (8,11): 2 es de tipo 19
+> 
+> Token: 8,13 *  -> (8,13): * es de tipo 9
+> 
+> Token: 8,15 3  -> (8,15): 3 es de tipo 19
+> 
+> Token: 8,17 4  -> (8,17): 4 es de tipo 19
+> 
+> Token: 10,3 }  -> (10,3): } es de tipo 4
+> 
+> Token: 11,1 }  -> (11,1): } es de tipo 4
+> 
+--------------------------
+Prueba: p06
+--- Fallo en la traducción ----------
+0a1,198
+> Token: 1,1 class  -> (1,1): class es de tipo 10
+> 
+> Token: 1,7 Main  -> (1,7): Main es de tipo 18
+> 
+> Token: 1,12 {  -> (1,12): { es de tipo 3
+> 
+> Token: 2,3 fun  -> (2,3): fun es de tipo 11
+> 
+> Token: 2,7 f  -> (2,7): f es de tipo 18
+> 
+> Token: 2,9 float  -> (2,9): float es de tipo 13
+> 
+> Token: 2,15 a  -> (2,15): a es de tipo 18
+> 
+> Token: 2,16 ;  -> (2,16): ; es de tipo 6
+> 
+> Token: 2,18 int  -> (2,18): int es de tipo 12
+> 
+> Token: 2,22 b  -> (2,22): b es de tipo 18
+> 
+> Token: 2,24 {  -> (2,24): { es de tipo 3
+> 
+> Token: 3,5 print  -> (3,5): print es de tipo 17
+> 
+> Token: 3,11 a  -> (3,11): a es de tipo 18
+> 
+> Token: 3,12 +  -> (3,12): + es de tipo 8
+> 
+> Token: 3,13 b  -> (3,13): b es de tipo 18
+> 
+> Token: 4,3 }  -> (4,3): } es de tipo 4
+> 
+> Token: 5,3 class  -> (5,3): class es de tipo 10
+> 
+> Token: 5,9 A  -> (5,9): A es de tipo 18
+> 
+> Token: 5,11 {  -> (5,11): { es de tipo 3
+> 
+> Token: 6,5 fun  -> (6,5): fun es de tipo 11
+> 
+> Token: 6,9 AA  -> (6,9): AA es de tipo 18
+> 
+> Token: 6,12 int  -> (6,12): int es de tipo 12
+> 
+> Token: 6,16 a  -> (6,16): a es de tipo 18
+> 
+> Token: 6,18 {  -> (6,18): { es de tipo 3
+> 
+> Token: 7,7 fun  -> (7,7): fun es de tipo 11
+> 
+> Token: 7,11 AAA  -> (7,11): AAA es de tipo 18
+> 
+> Token: 7,15 int  -> (7,15): int es de tipo 12
+> 
+> Token: 7,19 b  -> (7,19): b es de tipo 18
+> 
+> Token: 7,21 {  -> (7,21): { es de tipo 3
+> 
+> Token: 8,9 print  -> (8,9): print es de tipo 17
+> 
+> Token: 8,15 a  -> (8,15): a es de tipo 18
+> 
+> Token: 8,16 +  -> (8,16): + es de tipo 8
+> 
+> Token: 8,17 b  -> (8,17): b es de tipo 18
+> 
+> Token: 9,7 }  -> (9,7): } es de tipo 4
+> 
+> Token: 10,7 float  -> (10,7): float es de tipo 13
+> 
+> Token: 10,13 c  -> (10,13): c es de tipo 18
+> 
+> Token: 10,14 ;  -> (10,14): ; es de tipo 6
+> 
+> Token: 11,7 {  -> (11,7): { es de tipo 3
+> 
+> Token: 12,9 c  -> (12,9): c es de tipo 18
+> 
+> Token: 12,11 =  -> (12,11): = es de tipo 5
+> 
+> Token: 12,13 7.4  -> (12,13): 7.4 es de tipo 20
+> 
+> Token: 12,16 ;  -> (12,16): ; es de tipo 6
+> 
+> Token: 13,9 int  -> (13,9): int es de tipo 12
+> 
+> Token: 13,13 d  -> (13,13): d es de tipo 18
+> 
+> Token: 13,14 ;  -> (13,14): ; es de tipo 6
+> 
+> Token: 15,9 if  -> (15,9): if es de tipo 14
+> 
+> Token: 15,12 c  -> (15,12): c es de tipo 18
+> 
+> Token: 15,14 >=  -> (15,14): >= es de tipo 7
+> 
+> Token: 15,17 a  -> (15,17): a es de tipo 18
+> 
+> Token: 15,19 :  -> (15,19): : es de tipo 2
+> 
+> Token: 15,20 {  -> (15,20): { es de tipo 3
+> 
+> Token: 16,11 print  -> (16,11): print es de tipo 17
+> 
+> Token: 16,17 c  -> (16,17): c es de tipo 18
+> 
+> Token: 16,18 *  -> (16,18): * es de tipo 9
+> 
+> Token: 16,19 10  -> (16,19): 10 es de tipo 19
+> 
+> Token: 17,9 }  -> (17,9): } es de tipo 4
+> 
+> Token: 18,9 fi  -> (18,9): fi es de tipo 16
+> 
+> Token: 18,11 ;  -> (18,11): ; es de tipo 6
+> 
+> Token: 19,9 if  -> (19,9): if es de tipo 14
+> 
+> Token: 19,12 c  -> (19,12): c es de tipo 18
+> 
+> Token: 19,14 <  -> (19,14): < es de tipo 7
+> 
+> Token: 19,16 a  -> (19,16): a es de tipo 18
+> 
+> Token: 19,18 :  -> (19,18): : es de tipo 2
+> 
+> Token: 19,19 {  -> (19,19): { es de tipo 3
+> 
+> Token: 20,11 print  -> (20,11): print es de tipo 17
+> 
+> Token: 20,17 a  -> (20,17): a es de tipo 18
+> 
+> Token: 20,18 *  -> (20,18): * es de tipo 9
+> 
+> Token: 20,19 10  -> (20,19): 10 es de tipo 19
+> 
+> Token: 21,9 }  -> (21,9): } es de tipo 4
+> 
+> Token: 22,9 else  -> (22,9): else es de tipo 15
+> 
+> Token: 22,14 {  -> (22,14): { es de tipo 3
+> 
+> Token: 23,11 print  -> (23,11): print es de tipo 17
+> 
+> Token: 23,17 c  -> (23,17): c es de tipo 18
+> 
+> Token: 23,18 *  -> (23,18): * es de tipo 9
+> 
+> Token: 23,19 15  -> (23,19): 15 es de tipo 19
+> 
+> Token: 24,9 }  -> (24,9): } es de tipo 4
+> 
+> Token: 25,9 fi  -> (25,9): fi es de tipo 16
+> 
+> Token: 26,7 }  -> (26,7): } es de tipo 4
+> 
+> Token: 26,8 ;  -> (26,8): ; es de tipo 6
+> 
+> Token: 27,7 print  -> (27,7): print es de tipo 17
+> 
+> Token: 27,13 a  -> (27,13): a es de tipo 18
+> 
+> Token: 27,14 +  -> (27,14): + es de tipo 8
+> 
+> Token: 27,15 25  -> (27,15): 25 es de tipo 19
+> 
+> Token: 28,5 }  -> (28,5): } es de tipo 4
+> 
+> Token: 29,3 }  -> (29,3): } es de tipo 4
+> 
+> Token: 30,3 fun  -> (30,3): fun es de tipo 11
+> 
+> Token: 30,7 main  -> (30,7): main es de tipo 18
+> 
+> Token: 30,13 int  -> (30,13): int es de tipo 12
+> 
+> Token: 30,17 a  -> (30,17): a es de tipo 18
+> 
+> Token: 30,19 {  -> (30,19): { es de tipo 3
+> 
+> Token: 31,5 float  -> (31,5): float es de tipo 13
+> 
+> Token: 31,11 c  -> (31,11): c es de tipo 18
+> 
+> Token: 31,12 ;  -> (31,12): ; es de tipo 6
+> 
+> Token: 33,5 print  -> (33,5): print es de tipo 17
+> 
+> Token: 33,11 2  -> (33,11): 2 es de tipo 19
+> 
+> Token: 33,13 *  -> (33,13): * es de tipo 9
+> 
+> Token: 33,15 3  -> (33,15): 3 es de tipo 19
+> 
+> Token: 34,3 }  -> (34,3): } es de tipo 4
+> 
+> Token: 35,1 }  -> (35,1): } es de tipo 4
+> 
+--------------------------
+
+OJO: FALLAN 6 PRUEBAS DEL AUTOCORRECTOR
+
+
+
+AVISO IMPORTANTE: este autocorrector solo prueba el analizador léxico y NO prueba todos los casos posibles
+

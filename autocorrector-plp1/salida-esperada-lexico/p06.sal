@@ -96,7 +96,7 @@ Token: 15,14 >=  -> (15,14): >= es de tipo 7
 
 Token: 15,17 a  -> (15,17): a es de tipo 18
 
-Token: 15,18 :  -> (15,18): : es de tipo 2
+Token: 15,19 :  -> (15,19): : es de tipo 2
 
 Token: 15,20 {  -> (15,20): { es de tipo 3
 
@@ -122,7 +122,7 @@ Token: 19,14 <  -> (19,14): < es de tipo 7
 
 Token: 19,16 a  -> (19,16): a es de tipo 18
 
-Token: 19,17 :  -> (19,17): : es de tipo 2
+Token: 19,18 :  -> (19,18): : es de tipo 2
 
 Token: 19,19 {  -> (19,19): { es de tipo 3
 

@@ -86,7 +86,7 @@ Token: 8,11 <  -> (8,11): < es de tipo 7
 
 Token: 8,12 d  -> (8,12): d es de tipo 18
 
-Token: 8,13 :  -> (8,13): : es de tipo 2
+Token: 8,14 :  -> (8,14): : es de tipo 2
 
 Token: 9,9 float  -> (9,9): float es de tipo 13
 
