@@ -1,18 +1,1 @@
-feb 27, 2020 5:48:16 PM AnalizadorLexico anterior
-GRAVE: null
-java.io.IOException: Negative seek offset
-	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
-	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
-	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
-	at testLexico.main(testLexico.java:22)
-
-feb 27, 2020 5:48:16 PM AnalizadorLexico anterior
-GRAVE: null
-java.io.IOException: Negative seek offset
-	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
-	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
-	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
-	at testLexico.main(testLexico.java:22)
-
-Error lexico (1,16): caracter '
-' incorrecto
+autocorrector-plp1-solo-lexico.sh: line 155: /tmp/mata: No such file or directory
