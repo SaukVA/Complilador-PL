@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 public class AnalizadorLexico {
 
     private final RandomAccessFile entrada;
-    int fila = 1, colum = 1, anterior = 1;
+    int fila = 1, colum = 1, anterior = 0;
     Token t = new Token();
 
     AnalizadorLexico(final RandomAccessFile entrada) {
@@ -139,16 +139,16 @@ public class AnalizadorLexico {
             // o final de fichero, si se da por cualquier otra razon 
             // se lanza error.
             else if(estado == -1){
-                switch(estado){
+                switch(c){
                     case ' ':
                     case '\t':
-                        colum++; 
-                        anterior++;
+                        colum++;
+                        //anterior++;
                         estado = 0;
                         break;
                     case '\n':
                         colum = 1;
-                        anterior ++;
+                        //anterior ++;
                         fila ++;
                         estado = 0;
                         break;

@@ -1,1 +1,161 @@
-autocorrector-plp1-solo-lexico.sh: line 155: /tmp/mata: No such file or directory
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:178)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:179)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+feb 28, 2020 9:53:00 PM AnalizadorLexico anterior
+GRAVE: null
+java.io.IOException: Negative seek offset
+	at java.io.RandomAccessFile.seek(RandomAccessFile.java:555)
+	at AnalizadorLexico.anterior(AnalizadorLexico.java:110)
+	at AnalizadorLexico.siguienteToken(AnalizadorLexico.java:181)
+	at testLexico.main(testLexico.java:22)
+
+Error lexico (6,28): caracter ''' incorrecto

@@ -1,0 +1,174 @@
+Token: 1,1 class  -> (1,1): class es de tipo 10
+
+Token: 1,6 Main  -> (1,6): Main es de tipo 18
+
+Token: 1,10 {  -> (1,10): { es de tipo 3
+
+Token: 2,3 fun  -> (2,3): fun es de tipo 11
+
+Token: 2,6 f  -> (2,6): f es de tipo 18
+
+Token: 2,7 float  -> (2,7): float es de tipo 13
+
+Token: 2,12 a  -> (2,12): a es de tipo 18
+
+Token: 2,14 int  -> (2,14): int es de tipo 12
+
+Token: 2,17 b  -> (2,17): b es de tipo 18
+
+Token: 2,18 {  -> (2,18): { es de tipo 3
+
+Token: 3,5 print  -> (3,5): print es de tipo 17
+
+Token: 3,10 a  -> (3,10): a es de tipo 18
+
+Token: 3,11 b  -> (3,11): b es de tipo 18
+
+Token: 4,3 }  -> (4,3): } es de tipo 4
+
+Token: 5,3 class  -> (5,3): class es de tipo 10
+
+Token: 5,8 A  -> (5,8): A es de tipo 18
+
+Token: 5,9 {  -> (5,9): { es de tipo 3
+
+Token: 6,5 fun  -> (6,5): fun es de tipo 11
+
+Token: 6,8 AA  -> (6,8): AA es de tipo 18
+
+Token: 6,10 int  -> (6,10): int es de tipo 12
+
+Token: 6,13 a  -> (6,13): a es de tipo 18
+
+Token: 6,14 {  -> (6,14): { es de tipo 3
+
+Token: 7,7 fun  -> (7,7): fun es de tipo 11
+
+Token: 7,10 AAA  -> (7,10): AAA es de tipo 18
+
+Token: 7,13 int  -> (7,13): int es de tipo 12
+
+Token: 7,16 b  -> (7,16): b es de tipo 18
+
+Token: 7,17 {  -> (7,17): { es de tipo 3
+
+Token: 8,9 print  -> (8,9): print es de tipo 17
+
+Token: 8,14 a  -> (8,14): a es de tipo 18
+
+Token: 8,15 b  -> (8,15): b es de tipo 18
+
+Token: 8,22 }  -> (8,22): } es de tipo 4
+
+Token: 9,7 float  -> (9,7): float es de tipo 13
+
+Token: 9,12 c  -> (9,12): c es de tipo 18
+
+Token: 10,7 {  -> (10,7): { es de tipo 3
+
+Token: 11,9 c  -> (11,9): c es de tipo 18
+
+Token: 11,10 =  -> (11,10): = es de tipo 5
+
+Token: 11,11 7.4  -> (11,11): 7.4 es de tipo 20
+
+Token: 12,9 int  -> (12,9): int es de tipo 12
+
+Token: 12,12 d  -> (12,12): d es de tipo 18
+
+Token: 14,9 if  -> (14,9): if es de tipo 14
+
+Token: 14,11 c  -> (14,11): c es de tipo 18
+
+Token: 14,12 >=  -> (14,12): >= es de tipo 7
+
+Token: 14,15 a  -> (14,15): a es de tipo 18
+
+Token: 14,16 :  -> (14,16): : es de tipo 2
+
+Token: 14,17 {  -> (14,17): { es de tipo 3
+
+Token: 15,11 print  -> (15,11): print es de tipo 17
+
+Token: 15,16 c  -> (15,16): c es de tipo 18
+
+Token: 15,17 10  -> (15,17): 10 es de tipo 19
+
+Token: 15,27 }  -> (15,27): } es de tipo 4
+
+Token: 16,9 fi  -> (16,9): fi es de tipo 16
+
+Token: 17,9 if  -> (17,9): if es de tipo 14
+
+Token: 17,11 c  -> (17,11): c es de tipo 18
+
+Token: 17,12 <  -> (17,12): < es de tipo 7
+
+Token: 17,13 a  -> (17,13): a es de tipo 18
+
+Token: 17,14 :  -> (17,14): : es de tipo 2
+
+Token: 17,15 {  -> (17,15): { es de tipo 3
+
+Token: 18,11 print  -> (18,11): print es de tipo 17
+
+Token: 18,16 a  -> (18,16): a es de tipo 18
+
+Token: 18,17 10  -> (18,17): 10 es de tipo 19
+
+Token: 18,27 }  -> (18,27): } es de tipo 4
+
+Token: 19,9 else  -> (19,9): else es de tipo 15
+
+Token: 19,13 {  -> (19,13): { es de tipo 3
+
+Token: 20,11 print  -> (20,11): print es de tipo 17
+
+Token: 20,16 c  -> (20,16): c es de tipo 18
+
+Token: 20,17 15  -> (20,17): 15 es de tipo 19
+
+Token: 20,27 }  -> (20,27): } es de tipo 4
+
+Token: 21,9 fi  -> (21,9): fi es de tipo 16
+
+Token: 21,17 }  -> (21,17): } es de tipo 4
+
+Token: 21,18 ;  -> (21,18): ; es de tipo 6
+
+Token: 22,7 print  -> (22,7): print es de tipo 17
+
+Token: 22,12 a  -> (22,12): a es de tipo 18
+
+Token: 22,13 25  -> (22,13): 25 es de tipo 19
+
+Token: 22,19 }  -> (22,19): } es de tipo 4
+
+Token: 23,3 }  -> (23,3): } es de tipo 4
+
+Token: 24,3 fun  -> (24,3): fun es de tipo 11
+
+Token: 24,6 main  -> (24,6): main es de tipo 18
+
+Token: 24,11 int  -> (24,11): int es de tipo 12
+
+Token: 24,14 a  -> (24,14): a es de tipo 18
+
+Token: 24,15 {  -> (24,15): { es de tipo 3
+
+Token: 25,5 float  -> (25,5): float es de tipo 13
+
+Token: 25,10 c  -> (25,10): c es de tipo 18
+
+Token: 27,5 print  -> (27,5): print es de tipo 17
+
+Token: 27,10 2  -> (27,10): 2 es de tipo 19
+
+Token: 27,11 *  -> (27,11): * es de tipo 9
+
+Token: 27,13 3  -> (27,13): 3 es de tipo 19
+
+Token: 27,16 }  -> (27,16): } es de tipo 4
+
+Token: 28,1 }  -> (28,1): } es de tipo 4
+
