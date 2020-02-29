@@ -35,7 +35,7 @@ public class AnalizadorLexico {
         switch(estado){
             case 0: 
                 switch(c){
-                    case '(': return 1;
+                    case '(': return 1; 
                     case ')': return 2;
                     case ':': return 3;
                     case '{': return 4;
@@ -45,7 +45,7 @@ public class AnalizadorLexico {
                     case '>': return 9;
                     case '!': return 11;
                     case '=': return 12;
-                    case '+':
+                    case '+': 
                     case '-': return 14;
                     case '*':
                     case '/': return 15;
@@ -107,7 +107,7 @@ public class AnalizadorLexico {
 
     //Retrocede a al estado anterior
     public void anterior(){
-        try {anterior--; entrada.seek(anterior);} 
+        try { entrada.seek(anterior);} 
         catch (IOException ex) {
             Logger.getLogger(AnalizadorLexico.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -127,12 +127,12 @@ public class AnalizadorLexico {
         t.lexema = "";
         char c = leer();
         do{
-            //System.out.println(c);
             estado = delta(estado, c);
             //Cuando no esun estado final y es distinto de -1
             if(no_final(estado)){
                 if(estado == 0){ t.lexema="";} else{ t.lexema+=c;}
                 colum++;
+                anterior++;
                 c = leer();
             }
             //Cuando su estado es -1 puede darse por '\n', '\t', ' ' 
@@ -143,14 +143,14 @@ public class AnalizadorLexico {
                     case ' ':
                     case '\t':
                         colum++;
-                        //anterior++;
                         estado = 0;
+                        anterior++;
                         break;
                     case '\n':
                         colum = 1;
-                        //anterior ++;
                         fila ++;
                         estado = 0;
+                        anterior ++;
                         break;
                     case (char) -1:
                        t.tipo = Token.EOF;
@@ -171,6 +171,7 @@ public class AnalizadorLexico {
                     anterior();
                     anterior();
                     colum--;
+                    anterior --;
                 }
                 else{
                     switch(estado){
@@ -182,6 +183,7 @@ public class AnalizadorLexico {
                         default:
                             t.lexema += c;
                             colum++;
+                            anterior ++;
                             switch(estado){
                                 case 1: t.tipo = Token.PARI; break;
                                 case 2: t.tipo = Token.PARD; break;

@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 public class AnalizadorLexico {
 
     private final RandomAccessFile entrada;
-    int fila = 1, colum = 1, anterior = 1;
+    int fila = 1, colum = 1, anterior = 0;
     Token t = new Token();
 
     AnalizadorLexico(final RandomAccessFile entrada) {
@@ -35,7 +35,7 @@ public class AnalizadorLexico {
         switch(estado){
             case 0: 
                 switch(c){
-                    case '(': return 1;
+                    case '(': return 1; 
                     case ')': return 2;
                     case ':': return 3;
                     case '{': return 4;
@@ -45,7 +45,7 @@ public class AnalizadorLexico {
                     case '>': return 9;
                     case '!': return 11;
                     case '=': return 12;
-                    case '+':
+                    case '+': 
                     case '-': return 14;
                     case '*':
                     case '/': return 15;
@@ -107,7 +107,7 @@ public class AnalizadorLexico {
 
     //Retrocede a al estado anterior
     public void anterior(){
-        try {--anterior; entrada.seek(anterior);} 
+        try { entrada.seek(anterior);} 
         catch (IOException ex) {
             Logger.getLogger(AnalizadorLexico.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -124,31 +124,33 @@ public class AnalizadorLexico {
     //Devuelve el Token siguiente
     public Token siguienteToken(){
         int estado = 0;
+        t.lexema = "";
         char c = leer();
         do{
             estado = delta(estado, c);
             //Cuando no esun estado final y es distinto de -1
             if(no_final(estado)){
-                if(estado == 1){ t.lexema="";} else{ t.lexema+=c;}
+                if(estado == 0){ t.lexema="";} else{ t.lexema+=c;}
                 colum++;
+                anterior++;
                 c = leer();
             }
             //Cuando su estado es -1 puede darse por '\n', '\t', ' ' 
             // o final de fichero, si se da por cualquier otra razon 
             // se lanza error.
             else if(estado == -1){
-                switch(estado){
+                switch(c){
                     case ' ':
                     case '\t':
-                        colum++; 
-                        anterior++;
+                        colum++;
                         estado = 0;
+                        anterior++;
                         break;
                     case '\n':
                         colum = 1;
-                        anterior ++;
                         fila ++;
                         estado = 0;
+                        anterior ++;
                         break;
                     case (char) -1:
                        t.tipo = Token.EOF;
@@ -169,6 +171,7 @@ public class AnalizadorLexico {
                     anterior();
                     anterior();
                     colum--;
+                    anterior --;
                 }
                 else{
                     switch(estado){
@@ -180,6 +183,7 @@ public class AnalizadorLexico {
                         default:
                             t.lexema += c;
                             colum++;
+                            anterior ++;
                             switch(estado){
                                 case 1: t.tipo = Token.PARI; break;
                                 case 2: t.tipo = Token.PARD; break;

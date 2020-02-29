@@ -1,60 +1,66 @@
 Token: 1,1 class  -> (1,1): class es de tipo 10
 
-Token: 1,6 Main  -> (1,6): Main es de tipo 18
+Token: 1,7 Main  -> (1,7): Main es de tipo 18
 
-Token: 1,10 {  -> (1,10): { es de tipo 3
+Token: 1,12 {  -> (1,12): { es de tipo 3
 
 Token: 2,3 fun  -> (2,3): fun es de tipo 11
 
-Token: 2,6 f  -> (2,6): f es de tipo 18
+Token: 2,7 f  -> (2,7): f es de tipo 18
 
-Token: 2,7 float  -> (2,7): float es de tipo 13
+Token: 2,9 float  -> (2,9): float es de tipo 13
 
-Token: 2,12 a  -> (2,12): a es de tipo 18
+Token: 2,15 a  -> (2,15): a es de tipo 18
 
-Token: 2,14 int  -> (2,14): int es de tipo 12
+Token: 2,16 ;  -> (2,16): ; es de tipo 6
 
-Token: 2,17 b  -> (2,17): b es de tipo 18
+Token: 2,18 int  -> (2,18): int es de tipo 12
 
-Token: 2,18 {  -> (2,18): { es de tipo 3
+Token: 2,22 b  -> (2,22): b es de tipo 18
+
+Token: 2,24 {  -> (2,24): { es de tipo 3
 
 Token: 3,5 print  -> (3,5): print es de tipo 17
 
-Token: 3,10 a  -> (3,10): a es de tipo 18
+Token: 3,11 a  -> (3,11): a es de tipo 18
 
-Token: 3,11 b  -> (3,11): b es de tipo 18
+Token: 3,12 +  -> (3,12): + es de tipo 8
+
+Token: 3,13 b  -> (3,13): b es de tipo 18
 
 Token: 4,3 }  -> (4,3): } es de tipo 4
 
 Token: 5,3 fun  -> (5,3): fun es de tipo 11
 
-Token: 5,6 main  -> (5,6): main es de tipo 18
+Token: 5,7 main  -> (5,7): main es de tipo 18
 
-Token: 5,11 int  -> (5,11): int es de tipo 12
+Token: 5,13 int  -> (5,13): int es de tipo 12
 
-Token: 5,14 a  -> (5,14): a es de tipo 18
+Token: 5,17 a  -> (5,17): a es de tipo 18
 
-Token: 5,15 {  -> (5,15): { es de tipo 3
+Token: 5,19 {  -> (5,19): { es de tipo 3
 
 Token: 6,5 float  -> (6,5): float es de tipo 13
 
-Token: 6,10 c  -> (6,10): c es de tipo 18
+Token: 6,11 c  -> (6,11): c es de tipo 18
+
+Token: 6,12 ;  -> (6,12): ; es de tipo 6
 
 Token: 8,5 print  -> (8,5): print es de tipo 17
 
-Token: 8,10 2  -> (8,10): 2 es de tipo 19
+Token: 8,11 2  -> (8,11): 2 es de tipo 19
 
-Token: 8,11 *  -> (8,11): * es de tipo 9
+Token: 8,13 *  -> (8,13): * es de tipo 9
 
-Token: 8,13 3  -> (8,13): 3 es de tipo 19
+Token: 8,15 3  -> (8,15): 3 es de tipo 19
 
-Token: 8,14 4  -> (8,14): 4 es de tipo 19
+Token: 8,17 4  -> (8,17): 4 es de tipo 19
 
-Token: 8,17 /  -> (8,17): / es de tipo 9
+Token: 8,21 /  -> (8,21): / es de tipo 9
 
-Token: 8,18 *  -> (8,18): * es de tipo 9
+Token: 8,22 *  -> (8,22): * es de tipo 9
 
-Token: 8,20 Error  -> (8,20): Error es de tipo 18
+Token: 8,24 Error  -> (8,24): Error es de tipo 18
 
-Token: 8,25 en  -> (8,25): en es de tipo 18
+Token: 8,30 en  -> (8,30): en es de tipo 18
 
