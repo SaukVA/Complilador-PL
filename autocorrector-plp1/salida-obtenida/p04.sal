@@ -44,11 +44,7 @@ Token: 6,7 =  -> (6,7): = es de tipo 5
 
 Token: 6,9 7  -> (6,9): 7 es de tipo 19
 
-Token: 6,21 /  -> (6,21): / es de tipo 9
+Token: 8,3 }  -> (8,3): } es de tipo 4
 
-Token: 6,22 *  -> (6,22): * es de tipo 9
-
-Token: 6,24 Error  -> (6,24): Error es de tipo 18
-
-Token: 6,30 en  -> (6,30): en es de tipo 18
+Token: 9,1 }  -> (9,1): } es de tipo 4
 

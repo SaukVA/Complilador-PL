@@ -10,6 +10,7 @@ public class AnalizadorLexico {
     private final RandomAccessFile entrada;
     int fila = 1, colum = 1, anterior = 0;
     Token t = new Token();
+    boolean comen = false;
 
     AnalizadorLexico(final RandomAccessFile entrada) {
         this.entrada = entrada;
@@ -47,8 +48,8 @@ public class AnalizadorLexico {
                     case '=': return 12;
                     case '+': 
                     case '-': return 14;
-                    case '*':
-                    case '/': return 15;
+                    case '*': return 15;
+                    case '/': return 26;
                     default: if(c>='0' && c<='9'){return 16;}
                         else if((c>='A' && c<='Z') || (c>='a' && c<='z')){ return 24;}
                         else return -1; 
@@ -71,7 +72,7 @@ public class AnalizadorLexico {
                 else{return 13;}
             case 13:
             case 14:
-            case 15: return -1;
+            case 15: if(c=='/'){return 28;}else{return 27;}
             case 16: if(c>='0' && c<='9'){return 16;}
                 else if(c=='.'){return 18;}
                 else return 17;
@@ -86,6 +87,10 @@ public class AnalizadorLexico {
                                 || (c>='0' && c<='9')){ return 24;} 
                     else {return 25;}
             case 25: return -1;
+            case 26: if(c=='*'){return 29;}else{return 27;}
+            case 27:
+            case 28:
+            case 29: return -1;
             default:
                 return -1; 
         }
@@ -115,7 +120,7 @@ public class AnalizadorLexico {
 
     //Comprueba si es un estado en el que se encuentra en medio o es un estado final
     public boolean no_final(int e) {
-        final int[] inter = new int[] { 0, 7, 9, 11, 12, 16, 18, 20, 24 };
+        final int[] inter = new int[] { 0, 7, 9, 11, 12, 15, 16, 18, 20, 24, 26};
         Arrays.sort(inter);
         int res = Arrays.binarySearch(inter, e); 
         return res > 0 ? true : false; 
@@ -127,10 +132,12 @@ public class AnalizadorLexico {
         t.lexema = "";
         char c = leer();
         do{
+
             estado = delta(estado, c);
+            
             //Cuando no esun estado final y es distinto de -1
             if(no_final(estado)){
-                if(estado == 0){ t.lexema="";} else{ t.lexema+=c;}
+                if(estado == 0 ){ t.lexema="";} else{ t.lexema+=c;}
                 colum++;
                 anterior++;
                 c = leer();
@@ -158,8 +165,8 @@ public class AnalizadorLexico {
                        t.columna = colum;
                        return t;
                     default:
-                        System.err.println("Error lexico ("+fila+","+colum+"): caracter '"+ c +"' incorrecto");
-                        System.exit(-1);          
+                        if(!comen){System.err.println("Error lexico ("+fila+","+colum+"): caracter '"+ c +"' incorrecto");System.exit(-1);}
+                        else{colum++; estado = 0; anterior++;}
                 }
                 c = leer();
             }
@@ -172,14 +179,16 @@ public class AnalizadorLexico {
                     anterior();
                     colum--;
                     anterior --;
+                    estado = 0;
                 }
                 else{
                     switch(estado){
-                        case 10:t.tipo = Token.OPREL; anterior(); break;
-                        case 13: t.tipo = Token.ASIG; anterior(); break;
-                        case 17: t.tipo = Token.NUMENTERO; anterior(); break;
-                        case 21:t.tipo = Token.NUMREAL; anterior(); break;
-                        case 25:t.tipo = palabras_reservadas(t.lexema); anterior(); break;
+                        case 10:t.tipo = Token.OPREL; anterior(); estado = 0; break;
+                        case 13:t.tipo = Token.ASIG; anterior(); estado = 0; break;
+                        case 17:t.tipo = Token.NUMENTERO; anterior(); estado = 0; break;
+                        case 21:t.tipo = Token.NUMREAL; anterior(); estado = 0; break;
+                        case 25:t.tipo = palabras_reservadas(t.lexema); anterior(); estado = 0; break;
+                        case 27:t.tipo = Token.OPMUL; anterior(); estado = 0; break;
                         default:
                             t.lexema += c;
                             colum++;
@@ -193,16 +202,19 @@ public class AnalizadorLexico {
                                 case 6: t.tipo = Token.PYC; break;
                                 case 8: t.tipo = Token.OPREL; break;
                                 case 14: t.tipo = Token.OPAS; break;
-                                case 15: t.tipo = Token.OPMUL; break;
+                                case 29: comen = true; estado = 0; break;
                             }
                         break;
                     }
                 }
-                t.fila = fila;
-                t.columna = colum -t.lexema.length();
-                return t;
+                if(!comen){
+                    t.fila = fila;
+                    t.columna = colum -t.lexema.length();
+                    return t;
+                }
+                if (estado == 28){comen = false; estado = 0; t.lexema = "";}
+                c = leer();
             }
-
         }while(true);
     }
 }

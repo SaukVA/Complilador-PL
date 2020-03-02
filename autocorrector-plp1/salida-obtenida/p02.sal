@@ -14,53 +14,13 @@ Token: 2,17 a  -> (2,17): a es de tipo 18
 
 Token: 2,19 {  -> (2,19): { es de tipo 3
 
-Token: 4,5 /  -> (4,5): / es de tipo 9
-
-Token: 4,6 *  -> (4,6): * es de tipo 9
-
-Token: 4,8 comentarios  -> (4,8): comentarios es de tipo 18
-
-Token: 4,20 maliciosos  -> (4,20): maliciosos es de tipo 18
-
-Token: 4,31 *  -> (4,31): * es de tipo 9
-
-Token: 4,32 /  -> (4,32): / es de tipo 9
-
-Token: 5,5 /  -> (5,5): / es de tipo 9
-
-Token: 5,6 *  -> (5,6): * es de tipo 9
-
-Token: 5,7 1  -> (5,7): 1 es de tipo 19
-
-Token: 5,8 *  -> (5,8): * es de tipo 9
-
-Token: 5,9 /  -> (5,9): / es de tipo 9
-
 Token: 6,5 int  -> (6,5): int es de tipo 12
-
-Token: 6,8 /  -> (6,8): / es de tipo 9
-
-Token: 6,9 *  -> (6,9): * es de tipo 9
-
-Token: 6,10 *  -> (6,10): * es de tipo 9
-
-Token: 6,11 /  -> (6,11): / es de tipo 9
 
 Token: 6,12 b  -> (6,12): b es de tipo 18
 
 Token: 6,13 ;  -> (6,13): ; es de tipo 6
 
 Token: 7,5 float  -> (7,5): float es de tipo 13
-
-Token: 7,10 /  -> (7,10): / es de tipo 9
-
-Token: 7,11 *  -> (7,11): * es de tipo 9
-
-Token: 7,12 *  -> (7,12): * es de tipo 9
-
-Token: 7,13 *  -> (7,13): * es de tipo 9
-
-Token: 7,14 /  -> (7,14): / es de tipo 9
 
 Token: 7,15 c  -> (7,15): c es de tipo 18
 
@@ -70,23 +30,7 @@ Token: 8,5 print  -> (8,5): print es de tipo 17
 
 Token: 8,11 2  -> (8,11): 2 es de tipo 19
 
-Token: 8,12 /  -> (8,12): / es de tipo 9
-
-Token: 8,13 *  -> (8,13): * es de tipo 9
-
-Token: 10,10 *  -> (10,10): * es de tipo 9
-
-Token: 10,11 /  -> (10,11): / es de tipo 9
-
 Token: 10,12 +  -> (10,12): + es de tipo 8
-
-Token: 10,13 /  -> (10,13): / es de tipo 9
-
-Token: 10,14 *  -> (10,14): * es de tipo 9
-
-Token: 11,14 *  -> (11,14): * es de tipo 9
-
-Token: 11,15 /  -> (11,15): / es de tipo 9
 
 Token: 11,16 3  -> (11,16): 3 es de tipo 19
 
@@ -98,11 +42,7 @@ Token: 13,10 12.  -> (13,10): 12. es de tipo 19
 
 Token: 13,13 ;  -> (13,13): ; es de tipo 6
 
-Token: 13,16 /  -> (13,16): / es de tipo 9
+Token: 14,3 }  -> (14,3): } es de tipo 4
 
-Token: 13,17 *  -> (13,17): * es de tipo 9
-
-Token: 13,19 devuelve  -> (13,19): devuelve es de tipo 18
-
-Token: 13,27 e  -> (13,27): e es de tipo 18
+Token: 15,1 }  -> (15,1): } es de tipo 4
 

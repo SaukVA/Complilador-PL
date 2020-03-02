@@ -122,11 +122,9 @@ Token: 17,9 ==  -> (17,9): == es de tipo 7
 
 Token: 17,12 7  -> (17,12): 7 es de tipo 19
 
-Token: 17,17 /  -> (17,17): / es de tipo 9
+Token: 18,5 }  -> (18,5): } es de tipo 4
 
-Token: 17,18 *  -> (17,18): * es de tipo 9
+Token: 19,3 }  -> (19,3): } es de tipo 4
 
-Token: 17,20 Error  -> (17,20): Error es de tipo 18
-
-Token: 17,26 en  -> (17,26): en es de tipo 18
+Token: 20,1 }  -> (20,1): } es de tipo 4
 

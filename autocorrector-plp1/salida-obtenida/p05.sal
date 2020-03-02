@@ -56,11 +56,7 @@ Token: 8,15 3  -> (8,15): 3 es de tipo 19
 
 Token: 8,17 4  -> (8,17): 4 es de tipo 19
 
-Token: 8,21 /  -> (8,21): / es de tipo 9
+Token: 10,3 }  -> (10,3): } es de tipo 4
 
-Token: 8,22 *  -> (8,22): * es de tipo 9
-
-Token: 8,24 Error  -> (8,24): Error es de tipo 18
-
-Token: 8,30 en  -> (8,30): en es de tipo 18
+Token: 11,1 }  -> (11,1): } es de tipo 4
 

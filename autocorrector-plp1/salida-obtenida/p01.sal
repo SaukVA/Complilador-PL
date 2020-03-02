@@ -164,18 +164,6 @@ Token: 29,7 }  -> (29,7): } es de tipo 4
 
 Token: 30,5 }  -> (30,5): } es de tipo 4
 
-Token: 32,5 /  -> (32,5): / es de tipo 9
-
-Token: 32,6 *  -> (32,6): * es de tipo 9
-
-Token: 32,8 codigo  -> (32,8): codigo es de tipo 18
-
-Token: 32,15 main  -> (32,15): main es de tipo 18
-
-Token: 32,20 *  -> (32,20): * es de tipo 9
-
-Token: 32,21 /  -> (32,21): / es de tipo 9
-
 Token: 34,5 print  -> (34,5): print es de tipo 17
 
 Token: 34,11 7  -> (34,11): 7 es de tipo 19
