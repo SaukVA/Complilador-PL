@@ -160,10 +160,12 @@ public class AnalizadorLexico {
                         anterior ++;
                         break;
                     case (char) -1:
-                       t.tipo = Token.EOF;
-                       t.fila = fila;
-                       t.columna = colum;
-                       return t;
+                        if(!comen){
+                            t.tipo = Token.EOF;
+                            t.fila = fila;
+                            t.columna = colum;
+                            return t;
+                        }else{System.err.println("Error lexico: fin de fichero inesperado");System.exit(-1);}
                     default:
                         if(!comen){System.err.println("Error lexico ("+fila+","+colum+"): caracter '"+ c +"' incorrecto");System.exit(-1);}
                         else{colum++; estado = 0; anterior++;}
@@ -175,10 +177,11 @@ public class AnalizadorLexico {
             else{
                 if(estado == 19){
                     t.tipo = Token.NUMENTERO;
-                    anterior();
+                    t.lexema = t.lexema.substring(0, t.lexema.length()-1);
                     anterior();
                     colum--;
                     anterior --;
+                    anterior();
                     estado = 0;
                 }
                 else{
