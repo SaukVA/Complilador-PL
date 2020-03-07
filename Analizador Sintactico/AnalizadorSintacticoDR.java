@@ -7,7 +7,7 @@ public class AnalizadorSintacticoDR{
     private StringBuilder numR;
 
     //Contructor de la clase AnalizadorSintacticoDR
-    public AnalizadorLexico(AnalizadorLexico al){
+    public AnalizadorSintacticoDR(AnalizadorLexico al){
         this.al = al;
         this.numR = new StringBuilder();
         this.t = new Token();
@@ -37,7 +37,7 @@ public class AnalizadorSintacticoDR{
             Fun();
             M();
         }
-        else if(t.tipo == Toke.CLASS){
+        else if(t.tipo == Token.CLASS){
             add(3);
             S();
             M();
@@ -191,7 +191,7 @@ public class AnalizadorSintacticoDR{
         if(t.tipo == Token.ID || t.tipo == Token.NUMENTERO || t.tipo == Token.NUMREAL || t.tipo == Token.PARI){
             add(22);
             E();
-            Expr();
+            Exprp();
         } 
         else{errorSintaxis(Token.ID,Token.NUMENTERO,Token.NUMREAL,Token.PARI); }
     }
@@ -289,7 +289,7 @@ public class AnalizadorSintacticoDR{
     //---------------------------------->FUNCIONES ADICIONALES<----------------------------------
     
     // Añade un nuevo numero a la lista de las reglas
-    private void add(int num) {numR.append(" " + num);}
+    private void add(int num) {numR.append(" "); numR.append(num);}
     
     // Si coinciden los dos Tokens se enparejan, si no se lanza un error
     public final void emparejar (int token){
@@ -300,9 +300,9 @@ public class AnalizadorSintacticoDR{
     // Si hemos acabado de leer el ficher de forma correcta nos imprime por pantalla
     // la lista de reglas que hemos obtenido, si no lanza una excepcion indicando
     // que no se a encontrado el final del fichero
-    public comprobarFinFichero(){
+    public void comprobarFinFichero(){
         if(t.tipo != Token.EOF){errorSintaxis(Token.EOF);}
-        if(f){System.out.printnl(numR);}
+        if(f){System.out.print(numR.toString());}
     }
 
     // Muestra los errores que se han obtenido durante la ejecucion y el porque de ellos.

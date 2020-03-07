@@ -72,7 +72,7 @@ public class AnalizadorLexico {
                 else{return 13;}
             case 13:
             case 14:
-            case 15: if(c=='/'){return 28;}else{return 27;}
+            case 15: if(c=='/' && comen){return 28;}else{return 27;}
             case 16: if(c>='0' && c<='9'){return 16;}
                 else if(c=='.'){return 18;}
                 else return 17;
