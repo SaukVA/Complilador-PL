@@ -12,6 +12,7 @@ public class AnalizadorLexico {
     Token t = new Token();
     boolean comen = false;
 
+    // Constructor de la clase AnalizadorLexico
     AnalizadorLexico(final RandomAccessFile entrada) {
         this.entrada = entrada;
     }
