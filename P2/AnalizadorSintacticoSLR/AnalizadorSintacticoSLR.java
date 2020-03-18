@@ -1,95 +1,376 @@
-
 import java.util.*;
 
 public class AnalizadorSintacticoSLR{
 
-	private boolean flag;
 	private AnalizadorLexico al;
 	private Token t;
-	private Stack<Integer> pila, resultado; 
+	private Stack<Integer> pila, resultado;
+	private String accion;
+	private int clausura;
 
 
 	//Constructor del Analizador Sintactico Ascendente 
 	public AnalizadorSintacticoSLR(AnalizadorLexico al){
-		flag = true;
 		this.al = al;
 		token = al.siguienteToken();
-		pila  = new Stack<Integer>;
-		resultado = new Stack<Integer>;
+		pila  = new Stack<Integer>();
+		resultado = new Stack<Integer>();
+		accion = "";
+		clausura = 0;
 	}
 
-
-	/*push(0)
-	a := siguienteToken()
-	REPETIR
-		sea s el estado en la cima de la pila
-		SI Accion[s, a] = dj ENTONCES
-			push(j)
-			a := siguienteToken()
-		SI NO SI Accion[s, a] = rk ENTONCES
-			PARA i := 1 HASTA Longitud_Parte_Derecha(k) HACER pop()
-			sea p el estado en la cima de la pila
-			sea A la parte izquierda de la regla k
-			push(Ir_A[p, A])
-		SI NO SI Accion[s, a] = aceptar ENTONCES
-			fin del analisis
-		SI NO
-			error()
-		FIN_SI
-	HASTA fin del analisis*/
-
+	// Funcion principal de la clase AnalizadorSintacticoSLR la cual se añade el valor 0 a la 
+	// pila y se empieza un bucle hata obtener el resultado final (un string de las reglas aplicadas)
+	// o un error de ejecución. Dentro del bucle se comprueba la acción a realizar y se ejecuta. Las 
+	// acciones a realizar son 3 "desplazar", "reducir" y "acceptar". Si se desplaza se añade la 
+	// clausura a la pila qe tenemos de los  elementos, si se reduce se eliminarian de la pila tantos 
+	// elementos como tamaño de la regla, y si aceptamos, se muestra por pantalla las reglas que se 
+	// han aplicado.
 	public void  analizar(){
-
-		boolean salida = false;
-		int estado, p;
-		String a, regla; 
-
+		boolean salir = false;
+		int estado;
+		String regla = "";
+		
 		pila.push(0);
-
 		while(!salida){
-
-			estado = getEstado();
-			accion(estado, token, a, p);
-
-			switch (a){
-				case "d": //------> CASO DESPLAZAR
-					pila.push(p);
-					token = al.siguienteToken();
+			accion(getEstadoCima(),t);
+			switch(accion){
+				case "d": //----> Caso de que se obtenga un desplazamiento 
+					pila.push(clausura);
 					break;
-				case "r": //------> CASO REDUCCION
-					for(int i=1; i<= p; i++){pila.pop();}
-					p = getEstado();
-					regla = getRegla(k);
-					resultado.push(ir_A(p, regla));
+				case "r": //----> Caso de que se obtenga una redución
+					regla = reducir(clausura);
+					pila.push(ir_A(getEstadoCima(),regla));
 					break;
-				case "a": //------> CASO ACEPTAR
-					salida = true;
+				case "aceptar": //----> Caso de que se obtenga la aceptacion final
+					salir = true;
+					imprimirSolucion();
 					break;
-				default: //-------> CASO ERROR
-					printErrorres();
+				default: //----> Caso en el que se obtiene un Error
+					imprimirError(clausura);
 					break;
 			}
 		}
-
-		imprimir();
-
 	}
 
-	//-------------------------> REGLAS <-------------------------
+	//-----------------------------------> FUNCIONES EXTRA <-----------------------------------
 
+	// Funcion que nos devuelve el ultimo elemento añadido a la pila 
+	private int  getEstadoCima(){ return pila.lastElement(); }
 
-	//-------------------------> FUNCIONES EXTRA <-------------------------
+	// En esta funcion se nos devuelve el tipo de accion que se va a realizar en funcion del 
+	// estado actual y el token introducido. Siendo: "desplaza", "reucir" o aceptar
+	private void accion(int estado, Token t){
+		switch(estado){
+			case 0:
+				if(t.tipo == Token.CLASS){accion = "d"; clausura = 2;}
+				else{imprimirError(estado);}  
+				break;
+			case 1:
+				if(t.tipo == Token.EOF){accion = "aceptar"; clausura = -1;}
+				else{imprimirError(estado);} 
+				break;
+			case 2:
+				if(t.tipo == Token.ID){accion = "d"; clausura = 3;}
+				else{imprimirError(estado);}
+				break;
+			case 3:
+				if(t.tipo == Token.LBRA){accion = "d"; clausura = 4;}
+				else{imprimirError(estado);} 
+				break;
+			case 6:
+			case 7:
+			case 13:
+			case 4:
+				switch(t.tipo){
+					case Token.CLASS: accion = "d"; clausura = 4; break;
+					case Token.FUN: accion = "d"; clausura = 8; break;
+					case Token.ID:
+					case Token.LBRA:
+					case Token.INT:
+					case Token.FLOAT:
+					case Token.PYC:
+					case Token.PRINT: accion = "r"; clausura = 4; break;
+					default: imprimirError(estado); break;
+				}
+				break;
+			case 5:
+				if(t.tipo == Token.RBRA){accion = "d"; clausura = 9;}
+				else{imprimirError(estado);} 
+				break;
+			case 8:
+				if(t.tipo == Token.ID){accion = "d"; clausura = 12;}
+				else{imprimirError(estado);} 
+				break;
+			case 9:
+				switch(t.tipo){
+					case Token.CLASS: 
+					case Token.FUN: 
+					case Token.ID:
+					case Token.LBRA:
+					case Token.INT:
+					case Token.FLOAT:
+					case Token.PYC:
+					case Token.PRINT: 
+					case Token.EOF: accion = "r"; clausura = 1; break;
+					default: imprimirError(estado); break;
+				}
+				break;
+			case 10:
+			case 11:
+				switch(t.tipo){
+					case Token.ID:
+					case Token.LBRA:
+					case Token.INT:
+					case Token.FLOAT:
+					case Token.PYC:
+					case Token.PRINT: accion = "r"; 
+						if(estado = 10){clausura = 2;}else{clausura = 3;}
+						break;
+					default: imprimirError(estado); break;
+				}
+				break;
+			case 12:
+				if(t.tipo == Token.LBRA){accion = "d"; clausura = 13;}
+				else{imprimirError(estado);} 
+				break;
+			case 14:
+			case 18:
+				switch(t.tipo){
+					case Token.ID: accion = "d"; clausura = 19; break;
+					case Token.LBRA: accion = "d"; clausura = 18; break;
+					case Token.INT: accion = "d"; clausura = 22; break;
+					case Token.FLOAT: accion = "d"; clausura = 23; break;
+					case Token.PRINT:  accion = "d"; clausura = 20; break;
+					default: imprimirError(estado); break;
+				}
+				break;
+			case 15:
+			case 16:
+			case 17:
+			case 26:
+			case 33:
+			case 34:
+			case 35:
+				if(t.tipo == Token.RBRA || t.tipo == Token.PYC){
+					if (estado == 15 || estado == 26){accion = "d";}
+					else{accion = "r";}
+					switch (estado){
+						case 15: clausura = (t.tipo == Token.RBRA) ? 24 : 25;
+						case 16: clausura = 10;
+						case 17: clausura = 11;
+						case 26: clausura = (t.tipo == Token.RBRA) ? 35 : 25;
+						case 33: clausura = 6;
+						case 34: clausura = 9;
+						case 35: clausura = 12;
+					}
+				}
+				else{imprimirError(estado);} 
+				break;
+			case 19:
+				if(t.tipo == Token.ASIG){accion = "d"; clausura = 27;}
+				else{imprimirError(estado);} 
+				break;
+			case 20:
+			case 27:
+			case 37:
+				switch(t.tipo){
+					case Token.ID: accion = "d"; clausura = 32;break;
+					case Token.NUMENTERO: accion = "d"; clausura = 30;break;
+					case Token.NUMREAL: accion = "d"; clausura = 31;
+					default: imprimirError(estado); break;
+				}
+				break;
+			case 21:
+				if(t.tipo == Token.ID){accion = "d"; clausura = 33;}
+				else{imprimirError(estado);} 
+				break;
+			case 22:
+				if(t.tipo == Token.ID){accion = "r"; clausura = 7;}
+				else{imprimirError(estado);} 
+				break;
+			case 23:
+				if(t.tipo == Token.ID){accion = "r"; clausura = 8;}
+				else{imprimirError(estado);} 
+				break;
+			case 24:
+				switch(t.tipo){
+					case Token.CLASS: 
+					case Token.FUN: 
+					case Token.ID:
+					case Token.LBRA:
+					case Token.INT:
+					case Token.FLOAT:
+					case Token.PYC:
+					case Token.PRINT: accion = "r"; clausura = 5; break;
+					default: imprimirError(estado); break;
+				}
+				break;
+			case 25:
+				switch(t.tipo){
+					case Token.ID: accion = "d"; clausura = 19; break;
+					case Token.LBRA: accion = "d"; clausura = 18; break;
+					case Token.INT: accion = "d"; clausura = 22; break;
+					case Token.FLOAT: accion = "d"; clausura = 23; break;
+					case Token.PRINT: accion = "d"; clausura = 20; break;
+					default: imprimirError(estado); break;
+				}
+				break;
+			
+			case 28:
+				switch(t.tipo){
+					case Token.RBRA:
+					case Token.PYC: accion = "r"; clausura = 14;break;
+					case Token.OPAS: accion = "d"; clausura = 37;
+					default: imprimirError(estado); break;
+				}
+				break;
+			case 29:
+			case 30:
+			case 31:
+			case 32:
+				switch(t.tipo){
+					case Token.RBRA:
+					case Token.PYC: 
+					case Token.OPAS: accion = "r";
+						switch(estado){
+							case 29: clausura = 16;
+							case 30: clausura = 17;
+							case 31: clausura = 18;
+							case 32: clausura = 19;
+						}
+					default: imprimirError(estado); break;
+				}
+				break;
+			case 36:
+				switch(t.tipo){
+					case Token.RBRA:
+					case Token.PYC: accion = "r"; clausura = 13;break;
+					case Token.OPAS: accion = "d"; clausura = 37;
+					default: imprimirError(estado); break;
+				}
+				break;
+			case 38: 
+				switch(t.tipo){
+					case Token.RBRA:
+					case Token.PYC: 
+					case Token.OPAS: accion = "r"; clausura = 15;break;
+					default: imprimirError(estado); break;
+				}
+				break;
+		}
+	}
 
+	// Reducira la pila un tamaño equivalente a el tamaño de la parte izquierda
+	// de la regla que se va a utilizar y nos nos devuelve la regla para saber 
+	// a donde vamos a apuntar en Ir_A()  
+	private String reducir(int regla){
+		resultado.push(regla);
+		int pop = 0;
+		String r = "";
 
-	public int  getEstado(){
-		return 1;
+		switch(regla){
+			case 1: pop = 5; r = "S"; break;
+			case 2: 
+			case 3: pop = 2; r = "M"; break;
+			case 4: r = "M"; break;
+			case 5: pop = 6; r = "Fun"; break;
+			case 6: pop = 2; r = "DV"; break;
+			case 7: 
+			case 8: pop = 1; r = "Tipo"; break;
+			case 9: pop = 3; r = "Cod"; break;
+			case 10: pop = 1; r = "Cod"; break;
+			case 11: pop = 1; r = "I"; break;
+			case 12: 
+			case 13: pop = 3; r = "I"; break;
+			case 14: pop = 2; r = "I"; break;
+			case 15: pop = 3; r = "E"; break;
+			case 16: pop = 1; r = "E"; break;
+			case 17: 
+			case 18: 
+			case 19: pop = 1; r = "F"; break;
+		}
+		for(int i=1; i<=pop; i++){pila.pop();}
+		return r;
+	}
+
+	// Dependiendo de la regla que se haya reducido y del valor que se haya quedado en la
+	// cima se nos devuelve el valor que se va a introducir en la pila 
+	private int ir_A(int cima, String regla){
+		switch(regla){
+			case "S": 
+				switch(cima){
+					case 0: return 1;
+					case 4:
+					case 6:
+					case 7: 
+					case 13: return 7;
+				}
+				break;
+			case "M": 
+				switch(cima){
+					case 4: return 5;
+					case 6: return 10;
+					case 7: return 11;
+					case 13: return 14;
+				}
+				break;
+			case "Fun": 
+				switch(cima){
+					case 4:
+					case 6:
+					case 7: 
+					case 13: return 6;
+				}
+				break;
+			case "DV":
+				switch(cima){
+					case 14:
+					case 18:
+					case 25: return 17;
+				}
+				break;
+			case "Tipo": 
+				switch(cima){
+					case 14:
+					case 18:
+					case 25: return 21;
+				}
+				break;
+			case "Cod": 
+				switch(cima){
+					case 14: return 15;
+					case 18: return 26;
+				}
+				break;
+			case "I": 
+				switch(cima){
+					case 14:
+					case 18: return 16;
+					case 25: return 34;
+				}
+				break;
+			case "E": 
+				switch(cima){
+					case 20: return 28;
+					case 27: return 36;
+				}
+				break;
+			case "F": 
+				switch(cima){
+					case 20: 
+					case 27: return 29;
+					case 37: return 38;
+				}
+				break;
+		}
 	}
 
 	// Muestra los errores que se han obtenido durante la ejecucion y el porque de ellos.
     // Se controlan dos tipos de casos, el primero es aquel en el que se obtiene un final
     // de fichero inesperado, y el segundo caso es aquel en el que se obtienen otros valores
     // diferentes a los esperados
-    public final void errorSintaxis(int ... args){
+    private void errorSintaxis(int ... args){
 
         StringBuilder sal = new StringBuilder();
 
@@ -105,6 +386,5 @@ public class AnalizadorSintacticoSLR{
         System.err.print(sal);
         System.exit(-1);
     }
-
 
 }
