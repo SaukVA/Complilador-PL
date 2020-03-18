@@ -47,7 +47,7 @@ public class AnalizadorSintacticoSLR{
 					imprimirSolucion();
 					break;
 				default: //----> Caso en el que se obtiene un Error
-					imprimirError(clausura);
+					/*imprimirError(clausura);*/
 					break;
 			}
 		}
@@ -64,19 +64,19 @@ public class AnalizadorSintacticoSLR{
 		switch(estado){
 			case 0:
 				if(t.tipo == Token.CLASS){accion = "d"; clausura = 2;}
-				else{imprimirError(estado);}  
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.CLASS);}  
 				break;
 			case 1:
 				if(t.tipo == Token.EOF){accion = "aceptar"; clausura = -1;}
-				else{imprimirError(estado);} 
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.EOF);} 
 				break;
 			case 2:
 				if(t.tipo == Token.ID){accion = "d"; clausura = 3;}
-				else{imprimirError(estado);}
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.ID);}
 				break;
 			case 3:
 				if(t.tipo == Token.LBRA){accion = "d"; clausura = 4;}
-				else{imprimirError(estado);} 
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.LBRA);} 
 				break;
 			case 6:
 			case 7:
@@ -91,16 +91,18 @@ public class AnalizadorSintacticoSLR{
 					case Token.FLOAT:
 					case Token.PYC:
 					case Token.PRINT: accion = "r"; clausura = 4; break;
-					default: imprimirError(estado); break;
+					default: /*imprimirError(estado);*/  
+						errorSintaxis(Token.CLASS,Token.ID,Token.LBRA,Token.FUN,Token.INT,Token.FLOAT,Token.PYC,Token.PRINT); 
+						break;
 				}
 				break;
 			case 5:
 				if(t.tipo == Token.RBRA){accion = "d"; clausura = 9;}
-				else{imprimirError(estado);} 
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.RBRA);} 
 				break;
 			case 8:
 				if(t.tipo == Token.ID){accion = "d"; clausura = 12;}
-				else{imprimirError(estado);} 
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.ID);} 
 				break;
 			case 9:
 				switch(t.tipo){
@@ -113,7 +115,9 @@ public class AnalizadorSintacticoSLR{
 					case Token.PYC:
 					case Token.PRINT: 
 					case Token.EOF: accion = "r"; clausura = 1; break;
-					default: imprimirError(estado); break;
+					default: /*imprimirError(estado);*/  
+						errorSintaxis(Token.CLASS,Token.ID,Token.LBRA,Token.FUN,Token.INT,Token.FLOAT,Token.PYC,Token.PRINT,Token.EOF); 
+						break;
 				}
 				break;
 			case 10:
@@ -127,12 +131,14 @@ public class AnalizadorSintacticoSLR{
 					case Token.PRINT: accion = "r"; 
 						if(estado = 10){clausura = 2;}else{clausura = 3;}
 						break;
-					default: imprimirError(estado); break;
+					default: /*imprimirError(estado);*/  
+						errorSintaxis(Token.ID,Token.LBRA,Token.INT,Token.FLOAT,Token.PYC,Token.PRINT); 
+						break;
 				}
 				break;
 			case 12:
 				if(t.tipo == Token.LBRA){accion = "d"; clausura = 13;}
-				else{imprimirError(estado);} 
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.LBRA);} 
 				break;
 			case 14:
 			case 18:
@@ -142,7 +148,9 @@ public class AnalizadorSintacticoSLR{
 					case Token.INT: accion = "d"; clausura = 22; break;
 					case Token.FLOAT: accion = "d"; clausura = 23; break;
 					case Token.PRINT:  accion = "d"; clausura = 20; break;
-					default: imprimirError(estado); break;
+					default: /*imprimirError(estado);*/  
+						errorSintaxis(Token.ID,Token.LBRA,Token.INT,Token.FLOAT,Token.PRINT); 
+						break;
 				}
 				break;
 			case 15:
@@ -165,11 +173,11 @@ public class AnalizadorSintacticoSLR{
 						case 35: clausura = 12;
 					}
 				}
-				else{imprimirError(estado);} 
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.RBRA,Token.PYC);} 
 				break;
 			case 19:
 				if(t.tipo == Token.ASIG){accion = "d"; clausura = 27;}
-				else{imprimirError(estado);} 
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.ASIG);} 
 				break;
 			case 20:
 			case 27:
@@ -178,20 +186,20 @@ public class AnalizadorSintacticoSLR{
 					case Token.ID: accion = "d"; clausura = 32;break;
 					case Token.NUMENTERO: accion = "d"; clausura = 30;break;
 					case Token.NUMREAL: accion = "d"; clausura = 31;
-					default: imprimirError(estado); break;
+					default: /*imprimirError(estado);*/  errorSintaxis(Token.ID,Token.NUMENTERO,Token.NUMREAL); break;
 				}
 				break;
 			case 21:
 				if(t.tipo == Token.ID){accion = "d"; clausura = 33;}
-				else{imprimirError(estado);} 
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.ID);} 
 				break;
 			case 22:
 				if(t.tipo == Token.ID){accion = "r"; clausura = 7;}
-				else{imprimirError(estado);} 
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.ID);} 
 				break;
 			case 23:
 				if(t.tipo == Token.ID){accion = "r"; clausura = 8;}
-				else{imprimirError(estado);} 
+				else{/*imprimirError(estado);*/  errorSintaxis(Token.ID);} 
 				break;
 			case 24:
 				switch(t.tipo){
@@ -203,7 +211,8 @@ public class AnalizadorSintacticoSLR{
 					case Token.FLOAT:
 					case Token.PYC:
 					case Token.PRINT: accion = "r"; clausura = 5; break;
-					default: imprimirError(estado); break;
+					default: /*imprimirError(estado);*/  
+						errorSintaxis(Token.CLASS,Token.ID,Token.LBRA,Token.FUN,Token.INT,Token.FLOAT,Token.PYC,Token.PRINT); break;
 				}
 				break;
 			case 25:
@@ -213,7 +222,8 @@ public class AnalizadorSintacticoSLR{
 					case Token.INT: accion = "d"; clausura = 22; break;
 					case Token.FLOAT: accion = "d"; clausura = 23; break;
 					case Token.PRINT: accion = "d"; clausura = 20; break;
-					default: imprimirError(estado); break;
+					default: /*imprimirError(estado);*/  
+						errorSintaxis(Token.ID,Token.LBRA,Token.INT,Token.FLOAT,Token.PRINT); break;
 				}
 				break;
 			
@@ -222,7 +232,9 @@ public class AnalizadorSintacticoSLR{
 					case Token.RBRA:
 					case Token.PYC: accion = "r"; clausura = 14;break;
 					case Token.OPAS: accion = "d"; clausura = 37;
-					default: imprimirError(estado); break;
+					default: /*imprimirError(estado);*/  
+						errorSintaxis(Token.RBRA,Token.PYC,Token.OPAS); 
+						break;
 				}
 				break;
 			case 29:
@@ -239,7 +251,9 @@ public class AnalizadorSintacticoSLR{
 							case 31: clausura = 18;
 							case 32: clausura = 19;
 						}
-					default: imprimirError(estado); break;
+					default: /*imprimirError(estado);*/  
+						errorSintaxis(Token.RBRA,Token.PYC,Token.OPAS); 
+						break;
 				}
 				break;
 			case 36:
@@ -247,7 +261,9 @@ public class AnalizadorSintacticoSLR{
 					case Token.RBRA:
 					case Token.PYC: accion = "r"; clausura = 13;break;
 					case Token.OPAS: accion = "d"; clausura = 37;
-					default: imprimirError(estado); break;
+					default: /*imprimirError(estado);*/  
+						errorSintaxis(Token.RBRA,Token.PYC,Token.OPAS); 
+						break;
 				}
 				break;
 			case 38: 
@@ -255,7 +271,9 @@ public class AnalizadorSintacticoSLR{
 					case Token.RBRA:
 					case Token.PYC: 
 					case Token.OPAS: accion = "r"; clausura = 15;break;
-					default: imprimirError(estado); break;
+					default: /*imprimirError(estado);*/  
+						errorSintaxis(Token.RBRA,Token.PYC,Token.OPAS); 
+					break;
 				}
 				break;
 		}
@@ -364,6 +382,14 @@ public class AnalizadorSintacticoSLR{
 				}
 				break;
 		}
+	}
+
+	// Nos imprime las reglas que ha utiliza
+	private final void imprimirSolucion(){
+		Strig salida = "";
+		salida += resultado.pop().toString();
+		while(!resultado.empty()){salida += " " + resultado.pop().toString();}
+		System.out.println(salida);
 	}
 
 	// Muestra los errores que se han obtenido durante la ejecucion y el porque de ellos.
