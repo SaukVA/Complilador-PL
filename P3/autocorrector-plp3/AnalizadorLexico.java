@@ -12,7 +12,6 @@ public class AnalizadorLexico {
     Token t = new Token();
     boolean comen = false;
 
-    // Constructor de la clase AnalizadorLexico
     AnalizadorLexico(final RandomAccessFile entrada) {
         this.entrada = entrada;
     }
@@ -24,6 +23,9 @@ public class AnalizadorLexico {
             case "fun": return Token.FUN;
             case "int": return Token.INT;
             case "float": return Token.FLOAT;
+            case "if": return Token.IF;
+            case "else": return Token.ELSE;
+            case "fi": return Token.FI;
             case "print": return Token.PRINT;
             default: return Token.ID;
         }
@@ -34,9 +36,15 @@ public class AnalizadorLexico {
         switch(estado){
             case 0: 
                 switch(c){
+                    case '(': return 1; 
+                    case ')': return 2;
+                    case ':': return 3;
                     case '{': return 4;
                     case '}': return 5;
                     case ';': return 6;
+                    case '<': return 7;
+                    case '>': return 9;
+                    case '!': return 11;
                     case '=': return 12;
                     case '+': 
                     case '-': return 14;
@@ -46,12 +54,25 @@ public class AnalizadorLexico {
                         else if((c>='A' && c<='Z') || (c>='a' && c<='z')){ return 24;}
                         else return -1; 
                 }
+            case 1:
+            case 2:
+            case 3:
             case 4:
             case 5:
-            case 6:
-            case 12: 
-            case 14: return -1;
-            case 15: if(c=='/' && comen){return 28;}else{return -1;}
+            case 6: return -1;
+            case 7:if(c=='='){return 8;}
+                else{return 10;}
+            case 8:return -1;
+            case 9: if(c=='='){return 8;}
+                else{return 10;}
+            case 10: return -1;
+            case 11: if(c=='='){return 8;}
+                else{return -1;}
+            case 12: if(c=='='){return 8;}
+                else{return 13;}
+            case 13:
+            case 14:
+            case 15: if(c=='/' && comen){return 28;}else{return 27;}
             case 16: if(c>='0' && c<='9'){return 16;}
                 else if(c=='.'){return 18;}
                 else return 17;
@@ -66,10 +87,12 @@ public class AnalizadorLexico {
                                 || (c>='0' && c<='9')){ return 24;} 
                     else {return 25;}
             case 25: return -1;
-            case 26: if(c=='*'){return 29;}else{return -1;}
+            case 26: if(c=='*'){return 29;}else{return 27;}
+            case 27:
             case 28:
             case 29: return -1;
-            default:return -1; 
+            default:
+                return -1; 
         }
     } 
 
@@ -97,7 +120,7 @@ public class AnalizadorLexico {
 
     //Comprueba si es un estado en el que se encuentra en medio o es un estado final
     public boolean no_final(int e) {
-        final int[] inter = new int[] { 0, 15, 16, 18, 20, 24, 26};
+        final int[] inter = new int[] { 0, 7, 9, 11, 12, 15, 16, 18, 20, 24, 26};
         Arrays.sort(inter);
         int res = Arrays.binarySearch(inter, e); 
         return res > 0 ? true : false; 
@@ -163,20 +186,26 @@ public class AnalizadorLexico {
                 }
                 else{
                     switch(estado){
+                        case 10:t.tipo = Token.OPREL; anterior(); estado = 0; break;
+                        case 13:t.tipo = Token.ASIG; anterior(); estado = 0; break;
                         case 17:t.tipo = Token.NUMENTERO; anterior(); estado = 0; break;
                         case 21:t.tipo = Token.NUMREAL; anterior(); estado = 0; break;
                         case 25:t.tipo = palabras_reservadas(t.lexema); anterior(); estado = 0; break;
+                        case 27:t.tipo = Token.OPMUL; anterior(); estado = 0; break;
                         default:
                             t.lexema += c;
                             colum++;
                             anterior ++;
                             switch(estado){
+                                case 1: t.tipo = Token.PARI; break;
+                                case 2: t.tipo = Token.PARD; break;
+                                case 3: t.tipo = Token.DOSP; break;
                                 case 4: t.tipo = Token.LBRA; break;
                                 case 5: t.tipo = Token.RBRA; break;
                                 case 6: t.tipo = Token.PYC; break;
-                                case 12:t.tipo = Token.ASIG; break;
+                                case 8: t.tipo = Token.OPREL; break;
                                 case 14: t.tipo = Token.OPAS; break;
-                                case 29: comen = true; break;
+                                case 29: comen = true; estado = 0; break;
                             }
                         break;
                     }

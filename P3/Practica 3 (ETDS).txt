@@ -1,0 +1,86 @@
+Practica 3 (ETDS)
+
+S −→ class id lbra {M.th := S.th || id.lexema || "_"} M rbra
+    {S.trad := "// class " || th || id.lexema || "\n" || S.th || M.trad}
+
+M −→ {Fun.th := M.th} Fun {M1.th := M.th} M
+    {M.trad := Fun.trad || M.trad}
+M −→ {S.th := M.th} S {M1.th := M.th} M
+    {M.trad := S.trad || M1.trad}
+M −→ epsilon {M.trad := ""}
+
+Fun −→ fun id A lbra {M.th := Fun.th || id.lexema || "_"} M {Cod.th := Fun.th || id.lexema || "_"} Cod rbra
+    {Fun.trad := "void " || Fun.th || id.lexema || "(" || A.trad || ") {\n" || M.trad || Cod.trad || "}"}
+
+A −→ {Dv.th := ""} DV Ap
+    {A.trad := DV. trad || A.trad}
+
+Ap −→ pyc {Dv.th := ""} DV Ap 
+    {A.trad := ", " || DV. trad || A.trad}
+Ap −→ epsilon 
+    {A.trad := ""}
+
+DV −→ Tipo id 
+    {DV.trad := Tipo.trad || DV.th ||id.lexema}
+
+Tipo −→ int 
+    {Tipo.trad := "int "}
+Tipo −→ float 
+    {Tipo.trad := "float "}
+
+Cod −→ {I.th := Cod.th} I {Codp.th := Cod.th} Codp
+    {Cod.trad := I.trad || Codp.trad}
+
+Codp −→ pyc {I.th := Codp.th} I {Codp1.th := Codp.th} Codp
+    {Codp := ";\n\n" || I.trad || Codp.trad}
+Codp −→ epsilon
+    {Codp.trad := ""}
+
+I −→ {DV.th := I.th} DV
+    {I.trad := DV.trad}
+I −→ lbra {Cod.th := I.th || "_"} Cod rbra
+    {I:trad := "{\n" || Cod.trad || "\n}"}
+I −→ id asig {Expr.th := I.th} Expr
+    {I.trad := "  " || I.th || id.lexema || " = " || Expr.trad}
+I −→ if {Expr.th := I.th}Expr dosp {I1.th := I.th}I {Ip.th := I.th} Ip
+    {I.trad := "if (" || Expr.trad || ")\n" || I1.trad || Ip.trad}
+I −→ print {Expr.th := I.th} Expr
+    {I.trad := "  print(" || Expr.trad || ")"}
+
+Ip −→ else {I.th := Ip.th}I fi
+    {Ip.trad := ";\n\nelse\n" || I.trad || "\n"}
+Ip −→ fi
+    {Ip.trad := "\n"}
+
+Expr −→ {E.th := Expr.th}E {Exprp.th := Expr.th}Exprp
+    {Expr.trad := E.trad || Exprp.trad}
+
+Exprp −→ oprel {E.th := Exprp.th}E
+    {Exprp.trad := oprel.lexema || E.trad}
+Exprp −→ epsilon
+    {Exprp.trad := ""}
+
+E −→ {T.th := E.th} T {Ep.th := T.trad}Ep
+    {E.trad := T.trad || Ep.trad}
+
+Ep −→ opas {T.th := Ep.th} T {Ep1.th := T.trad}Ep
+    {Ep.trad := opas.lexema || T.trad || Ep1.trad}
+Ep −→ epsilon
+    {Ep.trad := ""}
+
+T −→ {F.th := T.th}F {Tp.th := T.th}Tp
+    {T.trad := F.trad || T.trad}
+
+Tp −→ opmul {F.th := Tp.th}F {Tp1.th := Tp.trad}Tp
+    {Tp.trad := opmul.lexema || F.trad || Tp.trad}
+Tp −→ epsilon
+    {Tp.trad := ""}
+
+F −→ id 
+    {F.trad := F.th || id.lexema}
+F −→ numentero 
+    {F.trad := numentero.lexema}
+F −→ numreal 
+    {F.trad := numreal.lexema}
+F −→ pari {Expr.th := F.th} Expr pard 
+    {F.trad := "(" || Expr.trad || ")"}

@@ -1,0 +1,33 @@
+// class A
+void A_funcion(int a,float b) {
+  printf("%f",itor(a) +r b);
+} // A_funcion
+
+// class A_B
+void A_B_otra(float c) {
+float A_B_otra_d;
+
+  printf("%f",A_B_otra_d*r c);
+
+if (itor(2) <r A_B_otra_d)
+float A_B_otra_e;
+
+else
+{
+int A_B_otra__b;
+
+int A_B_otra__d;
+
+  A_B_otra__b = 2+i 77;
+
+  A_B_otra__d = A_B_otra__b+i 33;
+
+  printf("%f",itor(A_B_otra__d) +r c);
+
+}
+
+} // A_B_otra
+
+
+
+
