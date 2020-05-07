@@ -1,0 +1,115 @@
+X −→ {S.th := ""} S {X.trad := S.trad}
+
+S −→ class id lbra {M.th := S.th=="" ? id.lexema : S.th || "_" || id.lexema} M rbra
+    {
+        if(S.th == ""){ 
+            S.trad := "// class " || id.lexema || "\n" || M.trad;
+            newSymb(id.lexema, Tipo.CLASS, id.lexema);
+        }
+        else{ 
+            S.trad := "// class " || S.th || "_" || id.lexema || "\n" || M.trad;
+            newSymb(S.th || "_" || id.lexema, Tipo.CLASS, id.lexema);
+        }
+    }
+
+M −→ {M1.th := M.th} M {SF.th := M.th} SF {M.trad := M1.trad || SF.trad}
+M −→ epsilon {M.trad := ""}
+
+F −→ {S.th := SF.th} S {SF.trad := S.trad}
+
+SF −→ {Fun.th := SF.th} Fun {SF.trad := Fun.trad}
+
+Fun −→ fun id A lbra {M.th := Fun.th || "_" || id.lexema} M {Cod.th := Fun.th || "_" || id.lexema} Cod rbra 
+    {
+        Fun.trad := "void " || Fun.th || "_" || id.lexema || "(" || A.trad || "){\n" || M.trad || Cod.trad || "\n}\n";
+        newSymb(Fun.th || "_" || id.lexema, Tipo.FUNCION);
+    }
+
+A −→ A pyc {DV.th = ""} DV { A.trad := A1.trad || "," || DV.trad}
+A −→ {DV.th = ""} DV {A.trad = D.trad}
+
+DV −→ Tipo id 
+    {
+        if(DV.th == ""){
+            DV.trad := Tipo.trad || id.lexema;
+            newSymb(id.lexema, Tipo.tip);
+        }
+        else{
+            DV.trad := Tipo.trad || Dt.th ||id.lexema || ";"
+            newSymb(Dt.th || id.lexema, Tipo.tip);
+        }
+    }
+
+Tipo −→ int {Tipo.trad := "int "; Tipo.tip := Tipo.ENTERO}
+Tipo −→ float {Tipo.trad := "float "; Tipo.tip := Tipo.REAL}
+
+Cod −→ {Cod1.th = Cod.th} Cod pyc {I.th := Cod1.th} I {cod.trad := Cod1.trad || "\n" || I.trad}
+Cod −→ {I.th := Cod.th} I {Cod.trad := I.trad}
+
+I −→ {DV.th := I.th} DV {I.trad := DV.trad}
+I −→ lbra {Cod.th := I.th || "_"} Cod rbra {I.trad := "{\n" || Cod.trad || "\n}"}
+I −→ id asig Expr
+    {
+        if(simb : searchSymb(id.lexema)){
+            if(simb.tipo == Expr.tip){ I.trad := simb.trad || " = " || Expr.trad}
+            else if(simb.tipo == Tipo.REAL && Expr.tipo == Tipo.ENTERO){ I.trad := simb.trad || " = itor( " || Expr.trad || ")"}
+        }
+    }
+I −→ if Expr dosp {I1.th := I.th} I {Ip.th := I.th} Ip {I.trad := "if (" || Expr.trad || "):\n" || I1.trad || Ip.trad}
+I −→ print Expr
+    {
+        if(Expr.tipo == Tipo.ENTERO){ I.trad := "print(%d," || Expr.trad || ")"}
+        else {I.trad := "print(%f," || Expr.trad || ")"}
+    }
+
+Ip −→ else {I.th := Ip.th} I fi {Ip.trad := "else\n" || Ip.trad}
+Ip −→ fi {Ip.trad := ""}
+
+Expr −→ E oprel E
+    {
+        if(E1.tipo == Tipo.ENTERO){
+            if(E2.tipo == Tipo.ENTERO){ Expr.trad := E1.trad || " " || opas.lexema || "i " || E2.trad; Expr.tipo := Tipo.ENTERO }
+            else{Expr.trad := "intor(" || E1.trad || ") " || opas.lexema || "r " || E2.trad; Expr.tipo := Tipo.ENTERO }
+        }
+        else{
+            if(E2.tipo == Tipo.ENTERO){ Expr.trad := E1.trad || " " || opas.lexema || "r into(" || E2.trad || ")"; Expr.tipo := Tipo.ENTERO }
+            else{ Expr.trad := E1.trad || " " || opas.lexema || "r " || E2.trad; Expr.tipo := Tipo.ENTERO }
+        }
+    }
+Expr −→ E {Expr.trad := E.trad; Expr.tipo := E.tipo;}
+
+E −→ E opas T
+    {
+        if(E.tipo == Tipo.ENTERO){
+            if(T.tipo == Tipo.ENTERO){ E.trad := E1.trad || " " || opas.lexema || "i " || T.trad; E.tipo := Tipo.ENTERO }
+            else{E.trad := "intor(" || E1.trad || ") " || opas.lexema || "r " || T.trad; E.tipo := Tipo.REAL }
+        }
+        else{
+            if(T.tipo == Tipo.ENTERO){ E.trad := E1.trad || " " || opas.lexema || "r into(" || T.trad || ")"; E.tipo := Tipo.REAL }
+            else{ E.trad := E1.trad || " " || opas.lexema || "r " || T.trad; E.tipo := Tipo.REAL }
+        }
+    }
+E −→ T {E.trad := T.trad; E.tipo := T.tipo;}
+
+T −→ T opmul F
+    {
+        if(T1.tipo == Tipo.ENTERO){
+            if(F.tipo == Tipo.ENTERO){ T.trad := T1.trad || " " || opmul.lexema || "i " || F.trad; T.tipo := Tipo.ENTERO }
+            else{T.trad := "intor(" || T1.trad || ") " || opmul.lexema || "r " || F.trad; T.tipo := Tipo.REAL }
+        }
+        else{
+            if(F.tipo == Tipo.ENTERO){ T.trad := T1.trad || " " || opmul.lexema || "r into(" || F.trad || ")"; T.tipo := Tipo.REAL }
+            else{ T.trad := T1.trad || " " || opmul.lexema || "r " || F.trad; T.tipo := Tipo.REAL }
+        }
+    }
+T −→ F {T.trad := F.trad; T.tipo := F.tipo;}
+
+F −→ numentero {F.trad := numentero.lexema; F.tipo := Tipo.ENTERO}
+F −→ numreal {F.trad := numreal.lexema; F.tipo := Tipo.REAL}
+F −→ id 
+    { 
+        if(simb : searchSymb(id.lexema)){
+            F.trad := simb.trad; F.tipo := simb.tipo;
+        }
+    }
+F −→ pari Expr pard {F.trad := "(" || Expr.trad || ")"; F.tipo := Expr.tipo; }
