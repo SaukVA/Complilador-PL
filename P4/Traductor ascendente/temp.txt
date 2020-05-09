@@ -1,0 +1,55 @@
+
+M    : { $$.th = $0.th; } M  { $$.th = $0.th; } SF { $$.trad = $2.trad + $4.trad; } 
+     | { $$.trad = ""; }
+     ;
+
+SF   : { $$.th = $0.th; } S { $$.trad = $2.trad; }
+
+
+Fun  : fun id A lbra M Cod rbra   {}
+     ;
+
+A    : A pyc DV   {}
+     | DV   {}
+     ;
+
+DV   : Tipo id  {}
+     ;
+
+Tipo : int  {}
+     | float  {}
+     ;
+
+Cod  : Cod pyc I  {}
+     | I  {}
+     ;
+
+I    : DV   {}
+     | lbra Cod rbra  {}
+     | id asig Expr   {}
+     | if Expr dosp I Ip  {}
+     | print Expr   {}
+     ;
+
+Ip   : else I fi  {}
+     | fi   {}
+     ;
+
+Expr : E oprel E {}
+     | E {}
+     ;
+
+E    : E opas T   {}
+     | T  {}
+     ;
+
+T    : T opmul F  {}
+     | F {}
+     ;
+
+F    : numentero  {}
+     | numreal  {}
+     | id   {}
+     | pari Expr pard   {}
+     ;
+

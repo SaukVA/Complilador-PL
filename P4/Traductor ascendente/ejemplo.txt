@@ -1,0 +1,6 @@
+class Main { 
+	class B { class E { fun A int a; int b{ } }
+	}
+	class B { class C { fun A int a{ }}
+	}
+}

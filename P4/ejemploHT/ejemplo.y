@@ -17,6 +17,7 @@ using namespace std;
 
 #include "comun.h"
 
+
 // variables y funciones del A. Léxico
 extern int ncol,nlin,findefichero;
 
@@ -39,64 +40,16 @@ string operador, s1, s2;  // string auxiliares
 %%
 
 
-S    : print SExp pyc    { /* comprobar que después del programa no hay ningún token más */
+S    : print {$$.cod = "Hola ";} SExp pyc    {
+                           cout << $3.cod;
                            int tk = yylex();
                            if (tk != 0) yyerror("");
 			 }
      ;
 
 
-SExp : SExp coma Exp     { cout << $3.cod << endl; }
-     | Exp               { cout << $1.cod << endl; }
+SExp : numentero     { $$.cod = $0.cod + $1.lexema; }
      ;
-
-
-Exp : Exp opas Factor    { if (!strcmp($2.lexema,"+"))
-                                  operador = "sum";
-                           else
-                                  operador = "res";
-                           if ($1.tipo != $3.tipo)
-                           {
-                                 if ($1.tipo == ENTERO)
-                                    s1 = "itor(" + $1.cod + ")";
-                                 else
-                                    s1 = $1.cod;
-                                 if ($3.tipo == ENTERO)
-                                    s2 = "itor(" + $3.cod + ")";
-                                 else
-                                    s2 = $3.cod;
-                                 operador +="r";
-                                 $$.tipo = REAL;
-                                 $$.cod = operador + "(" + s1 + "," + s2 + ")";
-                           }
-                           else
-                           {
-                                 s1 = $1.cod;
-                                 s2 = $3.cod;
-                                 if ($1.tipo == REAL) 
-                                    operador += "r";
-                                 else
-                                    operador += "i";
-                                 $$.tipo = $1.tipo;
-                                 $$.cod = operador + "(" + s1 + "," + s2 + ")";
-                           }
-                         }
-        | Factor         /* $$ = $1 */
-        ;
-
-Factor : numentero           { $$.tipo = ENTERO;
-                               $$.cod = $1.lexema;
-                             }
-       | numreal             { $$.tipo = REAL;
-                               $$.cod = $1.lexema;
-                             }
-       | pari Exp pard       { $$.tipo = $2.tipo;
-                               $$.cod = $2.cod;
-                             }
-       | id                  { $$.tipo  = ENTERO; // todas las variables son enteras
-                               $$.cod = $1.lexema;
-                             }
-       ;
 
 %%
 

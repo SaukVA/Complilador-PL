@@ -1,28 +1,27 @@
 X −→ {S.th := ""} S {X.trad := S.trad}
 
 S −→ class id lbra {M.th := S.th=="" ? id.lexema : S.th || "_" || id.lexema} M rbra
-    {
+    {   
         if(S.th == ""){ 
             S.trad := "// class " || id.lexema || "\n" || M.trad;
             newSymb(id.lexema, Tipo.CLASS, id.lexema);
         }
         else{ 
             S.trad := "// class " || S.th || "_" || id.lexema || "\n" || M.trad;
-            newSymb(S.th || "_" || id.lexema, Tipo.CLASS, id.lexema);
+            newSymb(id.lexema, Tipo.CLASS, S.th || "_" || id.lexema);
         }
     }
 
 M −→ {M1.th := M.th} M {SF.th := M.th} SF {M.trad := M1.trad || SF.trad}
 M −→ epsilon {M.trad := ""}
 
-F −→ {S.th := SF.th} S {SF.trad := S.trad}
-
+SF −→ {S.th := SF.th} S {SF.trad := S.trad}
 SF −→ {Fun.th := SF.th} Fun {SF.trad := Fun.trad}
 
 Fun −→ fun id A lbra {M.th := Fun.th || "_" || id.lexema} M {Cod.th := Fun.th || "_" || id.lexema} Cod rbra 
     {
         Fun.trad := "void " || Fun.th || "_" || id.lexema || "(" || A.trad || "){\n" || M.trad || Cod.trad || "\n}\n";
-        newSymb(Fun.th || "_" || id.lexema, Tipo.FUNCION);
+        newSymb(id.lexema, Tipo.FUNCION, Fun.th || "_" || id.lexema);
     }
 
 A −→ A pyc {DV.th = ""} DV { A.trad := A1.trad || "," || DV.trad}
@@ -32,11 +31,11 @@ DV −→ Tipo id
     {
         if(DV.th == ""){
             DV.trad := Tipo.trad || id.lexema;
-            newSymb(id.lexema, Tipo.tip);
+            newSymb(id.lexema, Tipo.tip, id.lexema);
         }
         else{
-            DV.trad := Tipo.trad || Dt.th ||id.lexema || ";"
-            newSymb(Dt.th || id.lexema, Tipo.tip);
+            DV.trad := Tipo.trad || Dt.th || "_" ||id.lexema || ";"
+            newSymb(id.lexema, Tipo.tip, Dt.th || id.lexema);
         }
     }
 
