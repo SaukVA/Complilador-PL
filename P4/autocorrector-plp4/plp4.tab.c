@@ -473,8 +473,8 @@ static const yytype_uint8 yyrline[] =
        0,    47,    47,    47,    55,    55,    71,    71,    72,    75,
       75,    76,    76,    79,    85,    85,    79,    92,    92,    93,
       93,    96,   116,   117,   120,   120,   121,   124,   124,   125,
-     125,   125,   126,   136,   136,   136,   141,   152,   152,   153,
-     156,   168,   171,   183,   186,   198,   201,   202,   203,   210
+     125,   125,   126,   136,   136,   136,   137,   148,   148,   149,
+     152,   164,   167,   179,   182,   194,   197,   198,   199,   206
 };
 #endif
 
@@ -1540,16 +1540,13 @@ yyreduce:
     break;
 
   case 35:
-#line 137 "plp4.y" /* yacc.c:1646  */
-    {
-                              if((yyvsp[-5]).tipo == ENTERO){(yyval).trad = "if (" + (yyvsp[-5]).trad + ")\n" + (yyvsp[-2]).trad + (yyvsp[0]).trad;}
-                              else{errorSemantico(ERRNOENTERO, (yyvsp[-6]).lexema, (yyvsp[-6]).nlin, (yyvsp[-6]).ncol);}
-                            }
-#line 1549 "plp4.tab.c" /* yacc.c:1646  */
+#line 136 "plp4.y" /* yacc.c:1646  */
+    {(yyval).trad = "if (" + (yyvsp[-5]).trad + ")\n" + (yyvsp[-2]).trad + (yyvsp[0]).trad;}
+#line 1546 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
-#line 142 "plp4.y" /* yacc.c:1646  */
+#line 138 "plp4.y" /* yacc.c:1646  */
     {
                             if((yyvsp[0]).tipo == ENTERO){
                               (yyval).trad = "printf(\"%d\"," + (yyvsp[0]).trad + ");";
@@ -1558,29 +1555,29 @@ yyreduce:
                               (yyval).trad = "printf(\"%f\"," + (yyvsp[0]).trad + ");";
                             }
                            }
-#line 1562 "plp4.tab.c" /* yacc.c:1646  */
+#line 1559 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 152 "plp4.y" /* yacc.c:1646  */
+#line 148 "plp4.y" /* yacc.c:1646  */
     { (yyval).th = (yyvsp[-1]).th; }
-#line 1568 "plp4.tab.c" /* yacc.c:1646  */
+#line 1565 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
-#line 152 "plp4.y" /* yacc.c:1646  */
+#line 148 "plp4.y" /* yacc.c:1646  */
     { (yyval).trad = "\nelse\n" + (yyvsp[-1]).trad; }
-#line 1574 "plp4.tab.c" /* yacc.c:1646  */
+#line 1571 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 39:
-#line 153 "plp4.y" /* yacc.c:1646  */
+#line 149 "plp4.y" /* yacc.c:1646  */
     { (yyval).trad = "";}
-#line 1580 "plp4.tab.c" /* yacc.c:1646  */
+#line 1577 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
-#line 157 "plp4.y" /* yacc.c:1646  */
+#line 153 "plp4.y" /* yacc.c:1646  */
     {
                             lexema = (yyvsp[-1]).lexema;
                             if((yyvsp[-2]).tipo == ENTERO){
@@ -1592,17 +1589,17 @@ yyreduce:
                                 else{ (yyval).trad = (yyvsp[-2]).trad + " " + lexema + "r " + (yyvsp[0]).trad; (yyval).tipo = ENTERO; }
                             }
                           }
-#line 1596 "plp4.tab.c" /* yacc.c:1646  */
+#line 1593 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 41:
-#line 168 "plp4.y" /* yacc.c:1646  */
+#line 164 "plp4.y" /* yacc.c:1646  */
     {(yyval).trad = (yyvsp[0]).trad; (yyval).tipo = (yyvsp[0]).tipo;}
-#line 1602 "plp4.tab.c" /* yacc.c:1646  */
+#line 1599 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
-#line 172 "plp4.y" /* yacc.c:1646  */
+#line 168 "plp4.y" /* yacc.c:1646  */
     {
                             lexema = (yyvsp[-1]).lexema;
                             if((yyvsp[-2]).tipo == ENTERO){
@@ -1614,17 +1611,17 @@ yyreduce:
                                 else{ (yyval).trad = (yyvsp[-2]).trad + " " + lexema + "r " + (yyvsp[0]).trad; (yyval).tipo = REAL; }
                             }
                           }
-#line 1618 "plp4.tab.c" /* yacc.c:1646  */
+#line 1615 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 43:
-#line 183 "plp4.y" /* yacc.c:1646  */
+#line 179 "plp4.y" /* yacc.c:1646  */
     {(yyval).trad = (yyvsp[0]).trad; (yyval).tipo = (yyvsp[0]).tipo;}
-#line 1624 "plp4.tab.c" /* yacc.c:1646  */
+#line 1621 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 44:
-#line 187 "plp4.y" /* yacc.c:1646  */
+#line 183 "plp4.y" /* yacc.c:1646  */
     {
                             lexema = (yyvsp[-1]).lexema;
                             if((yyvsp[-2]).tipo == ENTERO){
@@ -1636,46 +1633,46 @@ yyreduce:
                                 else{ (yyval).trad = (yyvsp[-2]).trad + " " + lexema + "r " + (yyvsp[0]).trad; (yyval).tipo = REAL; }
                             }
                           }
-#line 1640 "plp4.tab.c" /* yacc.c:1646  */
+#line 1637 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 45:
-#line 198 "plp4.y" /* yacc.c:1646  */
+#line 194 "plp4.y" /* yacc.c:1646  */
     {(yyval).trad = (yyvsp[0]).trad; (yyval).tipo = (yyvsp[0]).tipo;}
-#line 1646 "plp4.tab.c" /* yacc.c:1646  */
+#line 1643 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 46:
-#line 201 "plp4.y" /* yacc.c:1646  */
+#line 197 "plp4.y" /* yacc.c:1646  */
     {lexema = (yyvsp[0]).lexema; (yyval).trad = lexema; (yyval).tipo = ENTERO; }
-#line 1652 "plp4.tab.c" /* yacc.c:1646  */
+#line 1649 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 47:
-#line 202 "plp4.y" /* yacc.c:1646  */
+#line 198 "plp4.y" /* yacc.c:1646  */
     {lexema = (yyvsp[0]).lexema; (yyval).trad = lexema; (yyval).tipo = REAL; }
-#line 1658 "plp4.tab.c" /* yacc.c:1646  */
+#line 1655 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 204 "plp4.y" /* yacc.c:1646  */
+#line 200 "plp4.y" /* yacc.c:1646  */
     {
                             lexema = (yyvsp[0]).lexema;
                             struct Simbolo* p1 = tsa->buscar(lexema);
                             if(p1 != NULL){(yyval).trad = p1->nomtrad; (yyval).tipo = p1->tipo;}
                             else{errorSemantico(ERRNODECL, (yyvsp[0]).lexema, (yyvsp[0]).nlin, (yyvsp[0]).ncol);}
                           }
-#line 1669 "plp4.tab.c" /* yacc.c:1646  */
+#line 1666 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 210 "plp4.y" /* yacc.c:1646  */
+#line 206 "plp4.y" /* yacc.c:1646  */
     { (yyval).trad = "(" + (yyvsp[-1]).trad + ")"; (yyval).tipo = (yyvsp[-2]).tipo; }
-#line 1675 "plp4.tab.c" /* yacc.c:1646  */
+#line 1672 "plp4.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1679 "plp4.tab.c" /* yacc.c:1646  */
+#line 1676 "plp4.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1903,7 +1900,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 213 "plp4.y" /* yacc.c:1906  */
+#line 209 "plp4.y" /* yacc.c:1906  */
 
 
 void msgError(int nerror,int nlin,int ncol,const char *s)

@@ -42,7 +42,7 @@ DV −→ Tipo id
 Tipo −→ int {Tipo.trad := "int "; Tipo.tip := Tipo.ENTERO}
 Tipo −→ float {Tipo.trad := "float "; Tipo.tip := Tipo.REAL}
 
-Cod −→ {Cod1.th = Cod.th} Cod pyc {I.th := Cod1.th} I {cod.trad := Cod1.trad || "\n" || I.trad}
+Cod −→ {Cod1.th = Cod.th} Cod pyc {I.th := Cod.th} I {cod.trad := Cod1.trad || "\n" || I.trad}
 Cod −→ {I.th := Cod.th} I {Cod.trad := I.trad}
 
 I −→ {DV.th := I.th} DV {I.trad := DV.trad}
@@ -61,18 +61,18 @@ I −→ print Expr
         else {I.trad := "print(%f," || Expr.trad || ")"}
     }
 
-Ip −→ else {I.th := Ip.th} I fi {Ip.trad := "else\n" || Ip.trad}
+Ip −→ else {I.th := Ip.th} I fi {Ip.trad := "else\n" || Ip.trad }
 Ip −→ fi {Ip.trad := ""}
 
 Expr −→ E oprel E
     {
         if(E1.tipo == Tipo.ENTERO){
-            if(E2.tipo == Tipo.ENTERO){ Expr.trad := E1.trad || " " || opas.lexema || "i " || E2.trad; Expr.tipo := Tipo.ENTERO }
-            else{Expr.trad := "intor(" || E1.trad || ") " || opas.lexema || "r " || E2.trad; Expr.tipo := Tipo.ENTERO }
+            if(E2.tipo == Tipo.ENTERO){ Expr.trad := E1.trad || " " || oprel.lexema || "i " || E2.trad; Expr.tipo := Tipo.ENTERO }
+            else{Expr.trad := "intor(" || E1.trad || ") " || oprel.lexema || "r " || E2.trad; Expr.tipo := Tipo.ENTERO }
         }
         else{
-            if(E2.tipo == Tipo.ENTERO){ Expr.trad := E1.trad || " " || opas.lexema || "r into(" || E2.trad || ")"; Expr.tipo := Tipo.ENTERO }
-            else{ Expr.trad := E1.trad || " " || opas.lexema || "r " || E2.trad; Expr.tipo := Tipo.ENTERO }
+            if(E2.tipo == Tipo.ENTERO){ Expr.trad := E1.trad || " " || oprel.lexema || "r into(" || E2.trad || ")"; Expr.tipo := Tipo.ENTERO }
+            else{ Expr.trad := E1.trad || " " || oprel.lexema || "r " || E2.trad; Expr.tipo := Tipo.ENTERO }
         }
     }
 Expr −→ E {Expr.trad := E.trad; Expr.tipo := E.tipo;}
