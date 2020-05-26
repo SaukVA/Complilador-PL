@@ -1,0 +1,72 @@
+ETDS P5
+
+S −→ prg id dosp BlVar Bloque   { 
+                                   S.cod := Bloque.cod || "halt\n" ;
+                                }
+
+BlVar −→ var Decl pyc { //nada }
+
+Bloque −→ lbra SeqInstr rbra { Bloque.cod = SeqInstr.cod; }
+
+Decl −→ Decl pyc DVar { //anda }
+Decl −→ DVar { //nada }
+
+DVar −→ Tipo dosp { LIdent.th = Tipo.cod; } LIdent { //nada }
+
+Tipo −→ TipoSimple { Tipo.cod := TipoSimple.cod; }
+
+TipoSimple −→ int { TipoSimple.cod := "ENTERO"; }
+TipoSimple −→ real { TipoSimple.cod := "REAL"; }
+
+LIdent −→ { LIdent1.th = LIdent.th; } LIdent coma id    {
+                                                            if(tsActual->buscar(id.lexema) == NULL){
+                                                                tmp = nuevaDir();
+                                                                tsActual->newSymb(id.lexema, LIdent.th, tmp, NULL);
+                                                            }
+                                                            else{ errorSemantico(...); }
+                                                        }
+LIdent −→ id    {
+                    if(tsActual->buscar(id.lexema) == NULL){
+                        tmp = nuevaDir();
+                        tsActual->newSymb(id.lexema, LIdent.th, tmp, NULL);
+                    }
+                    else{ errorSemantico(...); }
+                }
+
+SeqInstr −→ SeqInstr pyc Instr { SeqInstr.cod := SeqInstr1.cod || Instr.cod; }
+SeqInstr −→ Instr { SeqInstr.cod := Instr.cod; }
+Instr −→ Bloque
+Instr −→ Ref asig Expr
+Instr −→ prn { nl = prn.lexema == "pritn" ? "" : "wrl\n"; } Expr   {
+                        if(Expr.tipo == ENTERO){
+                            Instr.cod := Expr.cod || "wri " || Expr.dir || "\n" || nl;
+                        }
+                        else{
+                            Instr.cod := Expr.cod || "wrr " || Expr.dir || "\n" || nl;
+                        }
+                    }
+Instr −→ read Ref
+Instr −→ if Expr dosp Instr
+Instr −→ if Expr dosp Instr else Instr
+Instr −→ while Expr dosp Instr
+Expr −→ Esimple oprel Esimple
+Expr −→ Esimple
+Esimple −→ Esimple opas Term
+Esimple −→ Term
+Esimple −→ opas Term
+Term −→ Term opmd Factor
+Term −→ Factor
+Factor −→ Ref
+Factor −→ numentero {   
+                        tmp = nuevaTemp();
+                        Factor.cod := "mov #" || numentero.lexema || " " || tmp || "\n";
+                        Factor.dir := tmp;
+                    }
+Factor −→ numreal   {
+                        tmp = nuevaTemp();
+                        Factor.cod := "mov $" || numreal.lexema || " " || tmp || "\n";
+                        Factor.dir := tmp;
+                    }
+Factor −→ pari Expr pard
+Factor −→ toInt pari Esimple pard
+Ref −→ id

@@ -1,0 +1,8 @@
+5
+mov $1.02 16000
+wrr 16000
+wrl
+mov #1 16000
+wri 16000
+wrl
+halt

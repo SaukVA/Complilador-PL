@@ -1,0 +1,10 @@
+prg b :
+
+var
+  int:a,b,mcd,sig;
+  int:salir;
+
+{
+  println 1.02;
+  println 1
+}
