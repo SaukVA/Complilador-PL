@@ -33,10 +33,26 @@ LIdent −→ id    {
                     else{ errorSemantico(...); }
                 }
 
-SeqInstr −→ SeqInstr pyc Instr { SeqInstr.cod := SeqInstr1.cod || Instr.cod; }
-SeqInstr −→ Instr { SeqInstr.cod := Instr.cod; }
-Instr −→ Bloque
-Instr −→ Ref asig Expr
+SeqInstr −→ SeqInstr pyc { x := contadorPos; } Instr { SeqInstr.cod := SeqInstr1.cod || Instr.cod; contadorPos := x;}
+SeqInstr −→ { x := contadorPos; } Instr { SeqInstr.cod := Instr.cod; contadorPos := x;}
+
+Instr −→ Bloque { Instr.cod := Bloque.cod; }
+Instr −→ Ref asig Expr  {
+                            if(Ref.tipo == Expr.tipo){
+                                Instr.cod := Expr.cod || "mov " || Expr.dir || " " || Ref.dir || "\n";
+                            }
+                            else if(Ref.tipo == REAL && Expr.tipo == ENTERO){
+                                tmp = nuevaTemp();
+                                Instr.cod :=    Expr.cod || 
+                                                "mov "  || Expr.dir || " A\n" || 
+                                                "itor " || "\n"
+                                                "mov A" || tmp || "\n" ||
+                                                "mov "  || Expr.dir || " " || tmp || "\n";
+                            }
+                            else{
+                                errorSemantico(...);
+                            }
+                        }
 Instr −→ prn { nl = prn.lexema == "pritn" ? "" : "wrl\n"; } Expr   {
                         if(Expr.tipo == ENTERO){
                             Instr.cod := Expr.cod || "wri " || Expr.dir || "\n" || nl;
@@ -45,28 +61,292 @@ Instr −→ prn { nl = prn.lexema == "pritn" ? "" : "wrl\n"; } Expr   {
                             Instr.cod := Expr.cod || "wrr " || Expr.dir || "\n" || nl;
                         }
                     }
-Instr −→ read Ref
-Instr −→ if Expr dosp Instr
-Instr −→ if Expr dosp Instr else Instr
-Instr −→ while Expr dosp Instr
-Expr −→ Esimple oprel Esimple
-Expr −→ Esimple
-Esimple −→ Esimple opas Term
-Esimple −→ Term
-Esimple −→ opas Term
-Term −→ Term opmd Factor
-Term −→ Factor
-Factor −→ Ref
+Instr −→ read Ref   {
+                        if(Ref.tipo == ENTERO){
+                            Instr.cod := Ref.cod || "rdi " || Ref.dir || "\n"; 
+                        }
+                        else{
+                            Instr.cod := Ref.cod || "rdr " || Ref.dir || "\n"; 
+                        }   
+                    }
+Instr −→ if Expr dosp Instr    {
+                                    if(Exp.tipo != ENTERO){errorSemantico(...)}
+                                    Instr.cod:= Expr.cod || 
+                                                "mov " || Expr.dir || "A \n" ||
+                                                "jz L1 \n" ||
+                                                Instr1.cod ||
+                                                "L1 \n";
+
+                                }
+Instr −→ if Expr dosp Instr else Instr  {
+                                            if(Exp.tipo != ENTERO){errorSemantico(...)}
+                                            Instr.cod:= Expr.cod || 
+                                                        "mov " || Expr.dir || "A \n" ||
+                                                        "jz L1 \n"  ||
+                                                        Instr1.cod  ||
+                                                        "jmp L2 \n" ||
+                                                        "L1 \n"     ||
+                                                        Instr2.cod  ||
+                                                        "L2 \n";
+                                        }
+Instr −→ while Expr dosp Instr  {
+                                    if(Exp.tipo != ENTERO){errorSemantico(...)}
+                                    Instr.cod:= "L1 \n" ||
+                                                Expr.cod || 
+                                                "mov " || Expr.dir || " A \n" ||
+                                                "jz L2 \n" ||
+                                                Instr1.cod ||
+                                                "jmp L1" ||
+                                                "L2 \n";
+                                }
+
+Expr −→ Esimple oprel Esimple   {
+                                    tmp = nuevaTemp();
+                                    Expr.dir := tmp;
+                                    if(Esimple1.tipo == ENTERO && Esimple2.tipo == ENTERO){
+                                        Expr.cod :=  Esimple1.cod || Esimple2.cod ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        fun(opas.lexema) || "i " || Esimple2.dir
+                                                        "mov A " || tmp || "\n";
+                                        Expr.tipo := ENTERO; 
+                                    }
+                                    else if(Esimple1.tipo == REAL && Esimple2.tipo == ENTERO){
+                                        tmp2 = nuevaTemp();
+                                        Expr.cod :=  Esimple1.cod || Esimple2.cod ||
+                                                        "mov " || Esimple2.dir || " A \n" ||
+                                                        "itor \n"
+                                                        "mov A " || tmp2 || "\n" ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        fun(opas.lexema) || "r " || tmp2
+                                                        "mov A " || tmp || "\n";
+                                        Expr.tipo := ENTERO;
+                                    }
+                                    else if(Esimple1.tipo == ENTERO && Esimple2.tipo == REAL){
+                                        Expr.cod :=  Esimple1.cod || Esimple2.cod ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        "itor \n" ||
+                                                        fun(opas.lexema) || "r " || Esimple2.dir ||
+                                                        "mov A " || tmp || "\n";
+                                        Expr.tipo := ENTERO;
+                                    }
+                                    else{
+                                        Expr.cod :=  Esimple1.cod || Esimple2.cod ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        fun(opas.lexema) || "r " || Esimple2.dir
+                                                        "mov A " || tmp || "\n";
+                                        Expr.tipo := ENTERO;
+                                    }
+                                }
+Expr −→ Esimple { Expr.cod := Esimple.cod; Expr.tipo := Esimple.tipo; Expr.dir := Esimple.dir; }
+
+Esimple −→ Esimple opas Term    {
+                                    tmp = nuevaTemp();
+                                    Esimple.dir := tmp;
+                                    if(Esimple1.tipo == ENTERO && Term.tipo == ENTERO){
+                                        Esimple.cod :=  Esimple1.cod || Term.cod ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        fun(opas.lexema) || "i " || Term.dir
+                                                        "mov A " || tmp || "\n";
+                                        Esimple.tipo := ENTERO; 
+                                    }
+                                    else if(Esimple1.tipo == REAL && Term.tipo == ENTERO){
+                                        tmp2 = nuevaTemp();
+                                        Esimple.cod :=  Esimple1.cod || Term.cod ||
+                                                        "mov " || Term.dir || " A \n" ||
+                                                        "itor \n"
+                                                        "mov A " || tmp2 || "\n" ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        fun(opas.lexema) || "r " || tmp2
+                                                        "mov A " || tmp || "\n";
+                                        Esimple.tipo := REAL;
+                                    }
+                                    else if(Esimple1.tipo == ENTERO && Term.tipo == REAL){
+                                        Esimple.cod :=  Esimple1.cod || Term.cod ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        "itor \n" ||
+                                                        fun(opas.lexema) || "r " || Term.dir ||
+                                                        "mov A " || tmp || "\n";
+                                        Esimple.tipo := REAL;
+                                    }
+                                    else if(Esimple1.tipo == REAL && Term.tipo == REAL){
+                                        Esimple.cod :=  Esimple1.cod || Term.cod ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        fun(opas.lexema) || "r " || Term.dir
+                                                        "mov A " || tmp || "\n";
+                                        Esimple.tipo := REAL;
+                                    }
+                                    else {
+                                        errorSemantico(...);
+                                    }
+                                }
+Esimple −→ Term { Esimple.cod := Term.cod; Esimple.tipo := Term.tipo; Esimple.dir := Term.dir; }
+Esimple −→ opas Term    {
+                            tmp = nuevaTemp();
+                            Esimple.dir := tmp; 
+                            Esimple.tipo := Term.tipo;
+                            if(Term.tipo == ENTERO){
+                                Esimple.cod :=  "mov #0 A" ||
+                                                fun(opas.lexema) || "i " || Term.dir ||
+                                                "mov A " || tmp;
+                            }
+                            else{
+                                Esimple.cod :=  "mov $0 A" ||
+                                                fun(opas.lexema) || "r " || Term.dir ||
+                                                "mov A " || tmp;
+                            }
+                        }
+
+Term −→ Term opmd Factor    {
+                                    tmp = nuevaTemp();
+                                    Esimple.dir := tmp;
+                                    if(Esimple1.tipo == ENTERO && Factor.tipo == ENTERO){
+                                        Esimple.cod :=  Esimple1.cod || Factor.cod ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        fun(opas.lexema) || "i " || Factor.dir
+                                                        "mov A " || tmp || "\n";
+                                        Esimple.tipo := ENTERO; 
+                                    }
+                                    else if(Esimple1.tipo == REAL && Factor.tipo == ENTERO){
+                                        tmp2 = nuevaTemp();
+                                        Esimple.cod :=  Esimple1.cod || Factor.cod ||
+                                                        "mov " || Factor.dir || " A \n" ||
+                                                        "itor \n"
+                                                        "mov A " || tmp2 || "\n" ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        fun(opas.lexema) || "r " || tmp2
+                                                        "mov A " || tmp || "\n";
+                                        Esimple.tipo := REAL;
+                                    }
+                                    else if(Esimple1.tipo == ENTERO && Factor.tipo == REAL){
+                                        Esimple.cod :=  Esimple1.cod || Factor.cod ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        "itor \n" ||
+                                                        fun(opas.lexema) || "r " || Factor.dir ||
+                                                        "mov A " || tmp || "\n";
+                                        Esimple.tipo := REAL;
+                                    }
+                                    else if(Esimple1.tipo == REAL && Factor.tipo == REAL){
+                                        Esimple.cod :=  Esimple1.cod || Factor.cod ||
+                                                        "mov " || Esimple1.dir || " A" ||
+                                                        fun(opas.lexema) || "r " || Factor.dir
+                                                        "mov A " || tmp || "\n";
+                                        Esimple.tipo := REAL;
+                                    }
+                                    else {
+                                        errorSemantico(...);
+                                    }
+                                }
+Term −→ Factor { Term.cod := Factor.cod; Term.tipo := Factor.tipo; Term.dir := Factor.dir; }
+
+Factor −→ Ref       {  
+                        tmp := nuevaTemp();
+                        Factor.cod := "mov " || Ref.dir || " " || tmp || "\n";
+                        Factor.tipo := Ref.tipo;
+                        Factor.dir := tmp;
+                    }
 Factor −→ numentero {   
                         tmp = nuevaTemp();
                         Factor.cod := "mov #" || numentero.lexema || " " || tmp || "\n";
                         Factor.dir := tmp;
+                        Factor.tipo := ENTERO;
                     }
 Factor −→ numreal   {
                         tmp = nuevaTemp();
                         Factor.cod := "mov $" || numreal.lexema || " " || tmp || "\n";
                         Factor.dir := tmp;
+                        Factor.tipo := REAL;
                     }
-Factor −→ pari Expr pard
+Factor −→ pari Expr pard { Factor.cod := Expr.cod; Factor.tipo := Expr.tipo; Factor.dir := Expr.dir; }
+
 Factor −→ toInt pari Esimple pard
-Ref −→ id
+    {
+        if(Esimple.tipo == ENTERO){
+            Factor.dir := Esimple.dir;
+            Factor.cod := Esimple.cod;
+            Factor.tipo := Esimple.tipo;
+        }
+        else if (Esimple.tipo == REAL){
+            tmp = nuevaTemp();
+            Factor.dir = tmp;
+            Factor.tipo = ENTERO;
+            Factor.cod = Esimple.cod ||
+                            "mov " || Esimple.dir || " A \n" ||
+                            "rtoi \n" ||
+                            "mov A " || tmp || "\n";
+        }
+    }
+
+Ref −→ id   {
+                if((simbolo=tsActual->searchSymb(id.lexema)) == null)
+                    errorSemantico(...)
+                else{
+                    Factor.dir := simbolo.dir;
+                    Factor.tipo := simbolo.tipo;
+                }
+            }
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+DVar −→ Tipo dosp { LIdent.th = Tipo.cod; LIdent.tam = Tipo.tam;} LIdent { //nada }
+LIdent −→ id    {
+                    if(tsActual->buscar(id.lexema) == NULL){
+                        if(LIdent.th == "ARRAY"){
+                            tmp = nuevaDir();
+                            tsActual->newSymb(id.lexema, LIdent.th, tmp, LIdent.tam);
+                            cvar += tam;
+                        }
+                        else{
+                            tmp = nuevaDir();
+                            tsActual->newSymb(id.lexema, LIdent.th, tmp, 1);
+                        }
+                    }
+                    else{ errorSemantico(...); }
+                }
+
+Tipo −→ cori Rango Dims {
+                            tSimbolaosActual-> nuevoTipoArray(Rango.cod,Rango.dir,Dims.tipo);
+                            Tipo.tam := Dims1.tam *(Rango.limS - Rango.limI + 1);
+                            Tipo.cod := "ARRAY"
+                        }
+Dims −→ coma Rango Dims {
+                            tSimbolaosActual-> nuevoTipoArray(Rango.limI,Rango.limS,Dims.tipo);
+                            Dims.tam := Dims1.tam *(Rango.limS - Rango.limI + 1);
+                            Dims.tipo := tSimbolaosActual.lastLine();
+                        }
+Dims −→ cord TipoSimple {
+                            Dims.tipo := Dims.th == "ENTERO" ? ENTERO : REAL;
+                            Dims.tam := 1;
+                        }
+Rango −→ numentero ptopto numentero { 
+                                        Rango.limI := covert(numentero1.lexema);
+                                        Rango.limS := covert(numentero2.lexema);
+                                    }
+Ref −→ id cori LisExpr cord
+LisExp r−→ LisExpr coma Expr 
+LisExpr −→ Expr
+
+
+
+cod == lin
+dir == lsup
+tipo == tbase
+
+
+
+INT = REAL -> ERR_ASIG
+INT = CHAR -> ERR_ASIG
+REAL = INT -> Ningun error(Se haría conversion itor)
+REAL = CHAR ->ERR_ASIG
+CHAR = INT -> ERR_ASIG
+CHAR = REAL ->ERR_ASIG
+-------------------------------------
+INT + REAL -> Ningun error(Se haría conversion itor)
+INT + CHAR -> ERR_OPDER (se esperaba UN ENTERO O REAL)
+REAL + INT -> Ningun error(Se haría conversion itor)
+REAL + CHAR ->ERR_OPDER (se esperaba ENTERO O REAL)
+CHAR + INT ->ERR_OPDIZ (se esperaba UN ENTERO O REAL)
+CHAR + REAL ->ERR_OPDIZ (se esperaba UN ENTERO O REAL)

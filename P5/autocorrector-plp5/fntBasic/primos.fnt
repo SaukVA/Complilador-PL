@@ -4,7 +4,7 @@ var
    int:EsPrimo;
 {
   suma = 0;
-  a = 9;
+  read a;           (* Entrada : "9" *)
   b = 1;
   while b<=a :
    {

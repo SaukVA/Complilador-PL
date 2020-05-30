@@ -1,0 +1,53 @@
+rdi 0
+mov #0 16000
+mov 16000 1
+mov 0 16000
+mov #100 16001
+mov 16000 A 
+lssi 16001
+mov A 16002
+mov 16002 A 
+jz L6 
+mov 0 16003
+mov #1 16004
+mov 16003 A 
+gtri 16004
+mov A 16005
+mov 16005 A 
+jz L5 
+mov 0 16006
+mov #7 16007
+mov 16006 A 
+leqi 16007
+mov A 16008
+mov 16008 A 
+jz L4 
+mov 0 16009
+mov #7 16010
+mov 16009 A 
+geqi 16010
+mov A 16011
+mov 16011 A 
+jz L3 
+mov 0 16012
+mov #7 16013
+mov 16012 A 
+neqi 16013
+mov A 16014
+mov 16014 A 
+jz L1 
+mov #7 16015
+mov 16015 1
+jmp L2 
+L1 
+mov #8 16016
+mov 16016 1
+L2 
+L3 
+L4 
+L5 
+L6 
+mov 1 16000
+wri 16000
+wrl
+halt
